@@ -10,7 +10,6 @@
     <meta name="author" content="Lao Typing Master">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph (OG) Tags ສໍາລັບຕອນແຊຣ໌ລົງ Facebook, WhatsApp, Line -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Typing Master Pro - ຝຶກພິມສຳຜັດ V2">
     <meta property="og:description" content="ເວັບໄຊທ໌ຝຶກພິມສຳຜັດພາສາລາວ ແລະ ອັງກິດອອນລາຍຟຣີ ຝຶກວາງນິ້ວ, ມີຈັບເວລາ ແລະ ເກັບຄະແນນ!">
@@ -42,7 +41,6 @@
         }
         @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #3b82f6; } }
         
-        /* Realistic Keyboard Styles */
         .keyboard-row {
             display: flex;
             justify-content: center;
@@ -69,7 +67,6 @@
         .key .primary { font-weight: bold; align-self: flex-start; font-size: 0.7rem; }
         .key .secondary { align-self: flex-end; color: #94a3b8; font-size: 0.7rem; }
         
-        /* Key Widths */
         .key-w-1-5 { width: 72px; min-width: 72px; }
         .key-w-1-75 { width: 84px; min-width: 84px; }
         .key-w-2 { width: 96px; min-width: 96px; }
@@ -77,7 +74,6 @@
         .key-w-2-75 { width: 132px; min-width: 132px; }
         .key-space { width: 300px; min-width: 300px; justify-content: center; align-items: center; }
         
-        /* Finger Colors */
         .finger-pinky { border-bottom-color: #ec4899; }
         .finger-ring { border-bottom-color: #3b82f6; }
         .finger-middle { border-bottom-color: #eab308; }
@@ -182,7 +178,6 @@
                 <span class="text-gray-500">ກົດ <span class="text-white">ເລີ່ມຕົ້ນ</span> ເພື່ອຝຶກພິມ...</span>
             </div>
             
-            <!-- Result Overlay -->
             <div id="result-overlay" class="absolute inset-0 bg-slate-900 bg-opacity-90 rounded-xl flex flex-col items-center justify-center hidden backdrop-blur-md z-50">
                 <h2 class="text-4xl font-extrabold text-emerald-400 mb-2">ສຳເລັດ!</h2>
                 <div class="flex gap-6 mb-6 text-center">
@@ -202,9 +197,7 @@
             <span id="finger-indicator-text" class="text-gray-400 font-medium">ລໍຖ້າການເລີ່ມຕົ້ນ...</span>
         </div>
 
-        <div class="glass-panel p-4 flex flex-col items-center" id="keyboard-container">
-            <!-- Rendered by JS -->
-        </div>
+        <div class="glass-panel p-4 flex flex-col items-center" id="keyboard-container"></div>
     </main>
 
     <script>
@@ -215,8 +208,7 @@
                 [
                     "ຟ ຫ ກ ດ ເ າ ສ ຊ", "ດ ກ ຫ ຟ ຊ ສ າ ເ", "ຟ ຫ ກ ດ ຟ ຫ ກ ດ", "ເ າ ສ ຊ ເ າ ສ ຊ", 
                     "ຟຫ ກດ ເາ ສຊ", "ດກ ຫຟ ຊສ າເ", "ກດຫຟ ສຊາເ", "ຟກດຫ ເສຊາ", "ດຟກຫ ຊສາເ", "ຫກດຟ າເສຊ", 
-                    "ກດ ຟຫ ສຊ ເາ", "ຟຟ ຫຫ ກກ ດດ", "ເເ າາ ສສ ຊຊ", "ດດ ກກ ຫຫ ຟຟ", "ຊຊ ສສ າາ ເເ", 
-                    "ຟຫກ ດເາ ສຊຟ", "ດກຫ ຟຊສ າເດ", "ຫກດ ຟສາ ເຊຫ", "ກດຟ ຫຊາ ເສກ", "ຟດກ ຫເສ ຊາຟ"
+                    "ກດ ຟຫ ສຊ ເາ", "ຟຟ ຫຫ ກກ ດດ", "ເເ າາ ສສ ຊຊ", "ດດ ກກ ຫຫ ຟຟ", "ຊຊ ສສ າາ ເເ"
                 ],
                 // Level 1: Easy
                 [
@@ -229,16 +221,13 @@
                 [
                     "ໂຮງຮຽນ ປະເທດ ຊາດ", "ວັດທະນະທຳ ສັງຄົມ", "ເສດຖະກິດ ພັດທະນາ", "ປະຊາຊົນ ອິດສະຫຼະ", "ຄອບຄົວ ຄວາມສຸກ",
                     "ສປປ ລາວ ສັນຕິພາບ", "ເອກະລາດ ປະຊາທິປະໄຕ", "ເອກະພາບ ວັດທະນາຖາວອນ", "ນະຄອນຫຼວງ ວຽງຈັນ", "ຫຼວງພະບາງ ມໍລະດົກໂລກ",
-                    "ຈຳປາສັກ ວັດພູ ຕາດຟານ", "ຊຽງຂວາງ ທົ່ງໄຫຫີນ", "ຄຳມ່ວນ ຖ້ຳກອງລໍ", "ສະຫວັນນະເຂດ ພະທາດອີງຮັງ", "ອັດຕະປື ດົງອຳພານ",
-                    "ເຊກອງ ຕາດເຊປ້ອງໄລ", "ສາລະວັນ ຕາດເລາະ", "ຜົ້ງສາລີ ຊາຮ້ອຍປີ", "ຫຼວງນ້ຳທາ ອຸດົມໄຊ", "ບໍ່ແກ້ວ ສາມຫຼ່ຽມທອງຄຳ"
+                    "ຈຳປາສັກ ວັດພູ ຕາດຟານ", "ຊຽງຂວາງ ທົ່ງໄຫຫີນ", "ຄຳມ່ວນ ຖ້ຳກອງລໍ", "ສະຫວັນນະເຂດ ພະທາດອີງຮັງ", "ອັດຕະປື ດົງອຳພານ"
                 ],
                 // Level 3: Hard
                 [
                     "ສະບາຍດີ ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ການຝຶກພິມ.", "ການພິມສຳຜັດຈະຊ່ວຍໃຫ້ເຈົ້າເຮັດວຽກໄວຂຶ້ນ.", "ຈົ່ງຝຶກຝົນຕົນເອງທຸກມື້ເພື່ອຄວາມສຳເລັດ.",
                     "ປະເທດລາວມີສະຖານທີ່ທ່ອງທ່ຽວທາງທຳມະຊາດທີ່ສວຍງາມຫຼາຍແຫ່ງ.", "ພາສາລາວເປັນພາສາປະຈຳຊາດທີ່ມີເອກະລັກແລະໜ້າຮຽນຮູ້.", 
-                    "ການອ່ານໜັງສືຊ່ວຍເປີດໂລກກະທັດແລະເພີ່ມພູນປັນຍາ.", "ເຕັກໂນໂລຊີຂໍ້ມູນຂ່າວສານມີບົດບາດສຳຄັນໃນຍຸກປັດຈຸບັນ.", 
-                    "ການເຮັດວຽກເປັນທີມຮຽກຮ້ອງໃຫ້ມີຄວາມເຂົ້າໃຈແລະເສຍສະຫຼະ.", "ຄວາມຊື່ສັດສຸຈະລິດເປັນຄຸນສົມບັດທີ່ທຸກຄົນຄວນມີ.", 
-                    "ການຮັກສາສິ່ງແວດລ້ອມແມ່ນໜ້າທີ່ຂອງໝົດທຸກຄົນໃນສັງຄົມ.", "ປ່າໄມ້ແມ່ນຊັບພະຍາກອນອັນລ້ຳຄ່າຂອງຊາດທີ່ຄວນປົກປັກຮັກສາ."
+                    "ການອ່ານໜັງສືຊ່ວຍເປີດໂລກກະທັດແລະເພີ່ມພູນປັນຍາ.", "ເຕັກໂນໂລຊີຂໍ້ມູນຂ່າວສານມີບົດບາດສຳຄັນໃນຍຸກປັດຈຸບັນ."
                 ]
             ],
             en: [
@@ -258,22 +247,18 @@
                 [
                     "beautiful computer keyboard", "programming developer design", "experience knowledge learning", 
                     "information technology system", "software hardware network", "database server application", 
-                    "internet website browser", "connection security password", "account profile setting", 
-                    "message notification update", "download upload transfer", "document folder directory"
+                    "internet website browser", "connection security password", "account profile setting"
                 ],
                 // Level 3: Hard
                 [
                     "The quick brown fox jumps over the lazy dog.", "Touch typing is an essential skill for modern workers.", 
                     "Practice makes perfect, keep up the good work.", "A journey of a thousand miles begins with a single step.", 
-                    "To be or not to be, that is the question.", "All that glitters is not gold, so be careful.", 
-                    "Actions speak louder than words in most situations.", "Honesty is the best policy for a happy life.", 
-                    "Better late than never, but never late is better.", "Don't judge a book by its cover without reading it.",
-                    "The early bird catches the worm in the morning.", "Where there is a will, there is always a way."
+                    "To be or not to be, that is the question.", "All that glitters is not gold, so be careful."
                 ]
             ]
         };
 
-        // Standard Lao Keyboard Layout (ພິມລາວ ມາດຕະຖານ)
+        // Standard Lao Keyboard Layout
         // Format: [Code, En, EnShift, La, LaShift, FingerType, ExtraClass]
         const keyboardLayoutData = [
             // Row 1: Numbers & Symbols
@@ -387,12 +372,50 @@
         });
         charMap[' '] = { code: 'Space', shift: false, finger: 'thumb' };
 
-        // Multi-character mappings (Lao compound characters)
+        // ການຈັບຄູ່ຕົວປະສົມພາສາລາວ (Lao compound character mappings)
+        // ຮອງຮັບຫຼາຍວິທີການພິມ
         const multiCharMap = {
-            'ຫຼ': { code: 'KeyO', shift: true, finger: 'ring' },
-            'ໜ': { code: 'KeyU', shift: true, finger: 'index' },
-            'ໝ': { code: 'KeyW', shift: true, finger: 'ring' }
+            // ຫຼ ມີ 2 ວິທີ: 1) ຫ + Shift+6, 2) Shift+O (ລ)
+            'ຫຼ': {
+                patterns: [
+                    { code: 'KeyO', shift: true, finger: 'ring' },  // Shift+O
+                    { code: 'Digit6', shift: true, finger: 'index' } // Shift+6
+                ],
+                display: 'ຫຼ'
+            },
+            // ໜ ກົດ Shift+U
+            'ໜ': {
+                patterns: [
+                    { code: 'KeyU', shift: true, finger: 'index' }
+                ],
+                display: 'ໜ'
+            },
+            // ໝ ກົດ Shift+W
+            'ໝ': {
+                patterns: [
+                    { code: 'KeyW', shift: true, finger: 'ring' }
+                ],
+                display: 'ໝ'
+            },
+            // ຫວ ກົດ ຫ + ວ (ບໍ່ຕ້ອງ Shift)
+            'ຫວ': {
+                patterns: [
+                    { code: 'KeyK', shift: false, finger: 'middle' }
+                ],
+                display: 'ຫວ'
+            }
         };
+
+        // ສ້າງ reverse mapping ສຳລັບການກວດສອບ
+        const reverseMultiMap = {};
+        Object.keys(multiCharMap).forEach(key => {
+            const entry = multiCharMap[key];
+            entry.patterns.forEach(pattern => {
+                const id = pattern.code + (pattern.shift ? '_shift' : '');
+                if (!reverseMultiMap[id]) reverseMultiMap[id] = [];
+                reverseMultiMap[id].push(key);
+            });
+        });
 
         const fingerNamesLao = { pinky: "ນິ້ວກ້ອຍ", ring: "ນິ້ວນາງ", middle: "ນິ້ວກາງ", index: "ນິ້ວຊີ້", thumb: "ນິ້ວໂປ້" };
         const fingerColors = { pinky: "bg-pink-500", ring: "bg-blue-500", middle: "bg-yellow-500", index: "bg-emerald-500", thumb: "bg-purple-500" };
@@ -448,7 +471,7 @@
             const container = dom.keyboardContainer;
             container.innerHTML = '';
             
-            keyboardLayoutData.forEach((row, rowIndex) => {
+            keyboardLayoutData.forEach((row) => {
                 const rowDiv = document.createElement('div');
                 rowDiv.className = 'keyboard-row';
                 
@@ -504,12 +527,15 @@
             
             let keyInfo = null;
             let nextChar = state.textToType[state.currentIndex];
+            let isMulti = false;
             
-            // Check for multi-character
+            // ກວດສອບຕົວປະສົມ
             if (state.currentIndex + 1 < state.textToType.length) {
                 const twoChars = state.textToType.substring(state.currentIndex, state.currentIndex + 2);
                 if (multiCharMap[twoChars]) {
-                    keyInfo = multiCharMap[twoChars];
+                    isMulti = true;
+                    // ໃຊ້ pattern ທຳອິດສຳລັບການເນັ້ນ
+                    keyInfo = multiCharMap[twoChars].patterns[0];
                 }
             }
             
@@ -530,7 +556,13 @@
                 }
 
                 const fingerLao = fingerNamesLao[keyInfo.finger] || "ນິ້ວ";
-                dom.fingerText.innerHTML = `ໃຊ້ <b>${fingerLao}</b>${keyInfo.shift ? ' + ກົດ Shift ພ້ອມກັນ' : ''}`;
+                let displayText = `ໃຊ້ <b>${fingerLao}</b>`;
+                if (keyInfo.shift) displayText += ' + ກົດ Shift ພ້ອມກັນ';
+                if (isMulti) {
+                    const multiEntry = multiCharMap[state.textToType.substring(state.currentIndex, state.currentIndex + 2)];
+                    if (multiEntry) displayText += ` (${multiEntry.display})`;
+                }
+                dom.fingerText.innerHTML = displayText;
                 dom.fingerColor.className = `w-3 h-3 rounded-full shadow-[0_0_8px_currentColor] ${fingerColors[keyInfo.finger]}`;
             }
         }
@@ -613,6 +645,24 @@
             dom.overlay.classList.remove('hidden');
         }
 
+        // ກວດສອບວ່າຕົວອັກສອນທີ່ກົດເຂົ້າມາແມ່ນຫຍັງ
+        function getKeyInfoForChar(char, shiftPressed) {
+            // ກວດສອບຕົວປະສົມ
+            if (char.length === 2 && multiCharMap[char]) {
+                const patterns = multiCharMap[char].patterns;
+                // ຊອກຫາ pattern ທີ່ກົງກັບການກົດ Shift
+                for (let p of patterns) {
+                    if (p.shift === shiftPressed) {
+                        return p;
+                    }
+                }
+                // ຖ້າບໍ່ເຈະກົງກັບ Shift, ໃຊ້ອັນທຳອິດ
+                return patterns[0];
+            }
+            // ຕົວອັກສອນດຽວ
+            return charMap[char] || null;
+        }
+
         // Event Listeners
         dom.btnStart.addEventListener('click', startGame);
         dom.btnRetry.addEventListener('click', startGame);
@@ -632,19 +682,27 @@
 
         window.addEventListener('keydown', (e) => {
             if (!state.isPlaying) return;
-            if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab'].includes(e.key)) return;
+            if (['Control', 'Alt', 'Meta', 'CapsLock', 'Tab'].includes(e.key)) return;
+            
+            // ຈັດການ Shift ແຍກຕ່າງຫາກ
+            if (e.key === 'Shift') {
+                // ບໍ່ຕ້ອງເຮັດຫຍັງ, ລໍຖ້າການກົດຕົວອັກສອນ
+                return;
+            }
             
             if (e.key === ' ' || e.key === 'Backspace') e.preventDefault(); 
             
             if (!state.startTime) state.startTime = new Date();
 
             let inputKey = e.key;
-            let expectedChar = state.textToType[state.currentIndex];
+            let shiftPressed = e.shiftKey;
             
+            // ກວດສອບວ່າກົດຫຍັງ
+            let expectedChar = state.textToType[state.currentIndex];
             let matchLength = 1;
             let expectedFull = expectedChar;
             
-            // Check multi-character
+            // ກວດສອບຕົວປະສົມ
             if (state.currentIndex + 1 < state.textToType.length) {
                 const twoChars = state.textToType.substring(state.currentIndex, state.currentIndex + 2);
                 if (multiCharMap[twoChars]) {
@@ -656,12 +714,68 @@
             let isMatch = false;
             let keyInfo = null;
             
-            if (matchLength === 2 && inputKey === expectedFull) {
-                isMatch = true;
-                keyInfo = multiCharMap[expectedFull];
-            } else if (inputKey === expectedChar) {
-                isMatch = true;
-                keyInfo = charMap[expectedChar];
+            // ກໍລະນີຕົວປະສົມ
+            if (matchLength === 2) {
+                const multiEntry = multiCharMap[expectedFull];
+                if (multiEntry) {
+                    // ກວດສອບທຸກ pattern
+                    for (let p of multiEntry.patterns) {
+                        // ກວດສອບວ່າການກົດກົງກັບ pattern ໃດ
+                        const targetKey = document.getElementById(p.code);
+                        // ຖ້າເປັນຕົວປະສົມ ຫຼ ທີ່ກົດ ຫ + Shift+6
+                        // ຕ້ອງກວດສອບທັງສອງວິທີ
+                        if (p.shift === shiftPressed) {
+                            // ກວດສອບວ່າກົດປຸ່ມຖືກຕ້ອງ
+                            const charForCode = charMap[inputKey];
+                            if (charForCode && charForCode.code === p.code && charForCode.shift === p.shift) {
+                                isMatch = true;
+                                keyInfo = p;
+                                break;
+                            }
+                            // ກໍລະນີພິເສດ: ຫຼ ກົດ ຫ + Shift+6
+                            if (expectedFull === 'ຫຼ' && inputKey === 'ຫ' && shiftPressed === false) {
+                                // ກວດສອບວ່າຕົວຕໍ່ໄປຈະເປັນຫຍັງ
+                                // ຖ້າກົດ ຫ ແລ້ວຕໍ່ມາກົດ Shift+6
+                                // ຕ້ອງຈັດການແບບພິເສດ
+                                if (state.currentIndex + 1 < state.textToType.length) {
+                                    const nextTwo = state.textToType.substring(state.currentIndex + 1, state.currentIndex + 3);
+                                    // ຍັງບໍ່ທັນເປັນການຈັບຄູ່ເຕັມ
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                // ຕົວອັກສອນດຽວ
+                const charInfo = charMap[inputKey];
+                if (charInfo) {
+                    const expectedInfo = charMap[expectedChar];
+                    if (expectedInfo && charInfo.code === expectedInfo.code && charInfo.shift === expectedInfo.shift) {
+                        isMatch = true;
+                        keyInfo = charInfo;
+                    }
+                }
+            }
+            
+            // ກວດສອບກໍລະນີພິເສດສຳລັບ ຫຼ
+            if (!isMatch && expectedFull === 'ຫຼ') {
+                // ວິທີທີ 1: ກົດ ຫ ກ່ອນ (ບໍ່ຕ້ອງ Shift)
+                if (inputKey === 'ຫ' && !shiftPressed) {
+                    // ກວດສອບວ່າຕົວຕໍ່ໄປແມ່ນຫຍັງ
+                    if (state.currentIndex + 1 < state.textToType.length) {
+                        const nextChar = state.textToType[state.currentIndex + 1];
+                        if (nextChar === 'ຼ') {
+                            // ກົດຜິດ, ຍ້ອນວ່າຕ້ອງກົດ Shift+6 ຫຼື Shift+O
+                            // ຈັດການເປັນການພິມຜິດ
+                            triggerKeyPress('KeyS', true);
+                            state.errors++;
+                            state.comboCount = 0;
+                            updateComboUI();
+                            playErrorBeep();
+                            return;
+                        }
+                    }
+                }
             }
 
             if (isMatch && keyInfo) {
@@ -677,11 +791,11 @@
                     setTimeout(endGame, 300);
                 }
             } else {
+                // ກົດຜິດ
                 let wrongCode = 'Space';
-                if (charMap[inputKey]) {
-                    wrongCode = charMap[inputKey].code;
-                } else if (charMap[inputKey.toLowerCase()]) {
-                    wrongCode = charMap[inputKey.toLowerCase()].code;
+                const charInfo = charMap[inputKey];
+                if (charInfo) {
+                    wrongCode = charInfo.code;
                 }
                 triggerKeyPress(wrongCode, true);
                 
