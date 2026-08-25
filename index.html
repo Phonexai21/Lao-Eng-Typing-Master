@@ -17,6 +17,7 @@
     <title>Typing Master Pro - ຝຶກພິມສຳຜັດ V2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+Lao:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body {
             font-family: 'Inter', 'Noto Sans Lao', sans-serif;
@@ -128,6 +129,161 @@
             border-radius: 4px;
             padding: 0 2px;
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-content {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-icon {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .modal-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #f59e0b;
+            margin-bottom: 0.75rem;
+        }
+        .modal-subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .modal-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .modal-stat-item {
+            text-align: center;
+        }
+        .modal-stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+        .modal-stat-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        .modal-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+        }
+        .modal-btn-danger {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+        }
+        .modal-btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -8px rgba(220, 38, 38, 0.4);
+        }
+        .modal-btn-danger:active {
+            transform: scale(0.95);
+        }
+        .modal-btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .modal-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .modal-btn-secondary:active {
+            transform: scale(0.95);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .modal-content {
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+            .modal-stats {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            .modal-buttons {
+                flex-direction: column;
+            }
+            .modal-btn {
+                padding: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body class="flex flex-col items-center py-6 px-4">
@@ -135,7 +291,7 @@
     <header class="w-full max-w-5xl flex justify-between items-center mb-4 glass-panel p-4">
         <div>
             <h1 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
-                Typing Master Pro
+                ⌨️ Typing Master Pro
             </h1>
             <p class="text-xs text-gray-300 mt-1">ຝຶກພິມສຳຜັດແບບມືອາຊີບ V2</p>
         </div>
@@ -156,6 +312,10 @@
                 <p class="text-xs text-gray-400">Combo</p>
                 <p class="text-xl font-bold text-gray-500 transition-all duration-300" id="ui-combo">x1</p>
             </div>
+            <div class="text-center hidden md:block">
+                <p class="text-xs text-gray-400">ເວລາ</p>
+                <p class="text-xl font-bold text-purple-400" id="ui-timer">0s</p>
+            </div>
         </div>
     </header>
 
@@ -166,16 +326,19 @@
                 <option value="en">ພາສາອັງກິດ (English)</option>
             </select>
             <select id="level-select" class="bg-slate-800 text-white rounded-lg px-4 py-2 border border-slate-600 focus:outline-none focus:border-blue-500">
-                <option value="0">Beginner (ແປ້ນຢາວພື້ນຖານ)</option>
-                <option value="1">Easy (ຄຳສັບທົ່ວໄປ)</option>
-                <option value="2">Medium (ຄຳສັບຍາວ)</option>
-                <option value="3">Hard (ປະໂຫຍກເຕັມ)</option>
+                <option value="0">Beginner</option>
+                <option value="1">Easy</option>
+                <option value="2">Medium</option>
+                <option value="3">Hard</option>
             </select>
             <button id="btn-start" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 px-6 py-2 rounded-lg font-bold shadow-lg transition-all active:scale-95 flex items-center gap-2">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
-                ເລີ່ມຕົ້ນ (Start)
+                ເລີ່ມຕົ້ນ
             </button>
-            <button id="btn-reset" class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-sm text-gray-300 transition-all active:scale-95" title="ລຶບຂໍ້ມູນເກົ່າ">Reset XP</button>
+            <button id="btn-reset" class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-sm text-gray-300 transition-all active:scale-95 flex items-center gap-2" title="ລຶບຂໍ້ມູນເກົ່າ">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                Reset XP
+            </button>
         </div>
 
         <div class="glass-panel p-6 mb-4 relative min-h-[120px] flex items-center justify-center text-3xl leading-relaxed tracking-wide shadow-2xl">
@@ -183,16 +346,23 @@
                 <span class="text-gray-500">ກົດ <span class="text-white">ເລີ່ມຕົ້ນ</span> ເພື່ອຝຶກພິມ...</span>
             </div>
             
+            <!-- Progress Bar -->
+            <div class="absolute bottom-2 left-6 right-6">
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+            </div>
+            
             <div id="result-overlay" class="absolute inset-0 bg-slate-900 bg-opacity-90 rounded-xl flex flex-col items-center justify-center hidden backdrop-blur-md z-50">
-                <h2 class="text-4xl font-extrabold text-emerald-400 mb-2">ສຳເລັດ!</h2>
-                <div class="flex gap-6 mb-6 text-center">
+                <h2 class="text-4xl font-extrabold text-emerald-400 mb-2 animate__animated animate__bounceIn">🎉 ສຳເລັດ!</h2>
+                <div class="flex gap-6 mb-6 text-center animate__animated animate__fadeInUp">
                     <div><p class="text-sm text-gray-400">ຄວາມໄວ</p><p class="text-2xl font-bold text-blue-400"><span id="res-wpm">0</span> WPM</p></div>
                     <div><p class="text-sm text-gray-400">ຄວາມຖືກຕ້ອງ</p><p class="text-2xl font-bold text-yellow-400"><span id="res-acc">0</span>%</p></div>
                     <div><p class="text-sm text-gray-400">XP ທີ່ໄດ້</p><p class="text-2xl font-bold text-emerald-400">+<span id="res-xp">0</span></p></div>
                 </div>
-                <div class="flex gap-4">
-                    <button id="btn-next" class="bg-emerald-600 hover:bg-emerald-500 px-6 py-2 rounded-lg font-bold shadow-lg transition-all active:scale-95">ໄປຕໍ່ (Next)</button>
-                    <button id="btn-retry" class="bg-slate-600 hover:bg-slate-500 px-6 py-2 rounded-lg font-bold shadow-lg transition-all active:scale-95">ລອງໃໝ່ (Retry)</button>
+                <div class="flex gap-4 animate__animated animate__fadeInUp animate__delay-1s">
+                    <button id="btn-next" class="bg-emerald-600 hover:bg-emerald-500 px-6 py-2 rounded-lg font-bold shadow-lg transition-all active:scale-95">➡️ ໄປຕໍ່</button>
+                    <button id="btn-retry" class="bg-slate-600 hover:bg-slate-500 px-6 py-2 rounded-lg font-bold shadow-lg transition-all active:scale-95">🔄 ລອງໃໝ່</button>
                 </div>
             </div>
         </div>
@@ -205,63 +375,73 @@
         <div class="glass-panel p-4 flex flex-col items-center" id="keyboard-container"></div>
     </main>
 
+    <!-- Reset XP Modal -->
+    <div class="modal-overlay" id="reset-modal">
+        <div class="modal-content">
+            <div class="modal-icon">⚠️</div>
+            <h2 class="modal-title">ລຶບຄະແນນ XP ທັງໝົດ?</h2>
+            <p class="modal-subtitle">
+                ທ່ານກຳລັງຈະລຶບຂໍ້ມູນຄວາມກ້າວໜ້າທັງໝົດ<br>
+                <span class="text-gray-500 text-sm">ການກະທຳນີ້ບໍ່ສາມາດກັບຄືນໄດ້</span>
+            </p>
+            <div class="modal-stats">
+                <div class="modal-stat-item">
+                    <div class="modal-stat-value" id="modal-current-xp">0</div>
+                    <div class="modal-stat-label">XP ປັດຈຸບັນ</div>
+                </div>
+                <div class="modal-stat-item">
+                    <div class="modal-stat-value" id="modal-current-level">1</div>
+                    <div class="modal-stat-label">Level</div>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-secondary" id="modal-cancel">ຍົກເລີກ</button>
+                <button class="modal-btn modal-btn-danger" id="modal-confirm">ລຶບທັງໝົດ</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // --- Data & Content ---
         const typingData = {
             la: [
-                // Level 0: Beginner
                 [
                     "ຟ ຫ ກ ດ ເ າ ສ ຊ", "ດ ກ ຫ ຟ ຊ ສ າ ເ", "ຟ ຫ ກ ດ ຟ ຫ ກ ດ", "ເ າ ສ ຊ ເ າ ສ ຊ", 
-                    "ຟຫ ກດ ເາ ສຊ", "ດກ ຫຟ ຊສ າເ", "ກດຫຟ ສຊາເ", "ຟກດຫ ເສຊາ", "ດຟກຫ ຊສາເ", "ຫກດຟ າເສຊ"
+                    "ຟຫ ກດ ເາ ສຊ", "ດກ ຫຟ ຊສ າເ", "ກດຫຟ ສຊາເ"
                 ],
-                // Level 1: Easy
                 [
                     "ພໍ່ ແມ່ ປາ ມາ ໄປ", "ນອນ ກິນ ເຮັດ ດີ ນາ", "ໄກ່ ໄຂ່ ງົວ ຄວາຍ ໝູ", "ຮຽນ ຂຽນ ອ່ານ ຫຼິ້ນ", "ສະ ບາຍ ດີ ລາວ",
-                    "ນົກ ໜູ ປູ ປາ ໝາ", "ເປັດ ໄກ່ ຊ້າງ ມ້າ", "ດິນ ນ້ຳ ລົມ ໄຟ", "ເຂົ້າ ປາ ອາຫານ ນ້ຳ", "ຊ້າງ ມ້າ ງົວ ຄວາຍ",
-                    "ໂຮງ ຮຽນ ບ້ານ ເຮືອນ", "ພໍ່ ແມ່ ອ້າຍ ເອື້ອຍ", "ນ້ອງ ປູ່ ຍ່າ ຕາ ຍາຍ"
+                    "ນົກ ໜູ ປູ ປາ ໝາ", "ເປັດ ໄກ່ ຊ້າງ ມ້າ", "ດິນ ນ້ຳ ລົມ ໄຟ"
                 ],
-                // Level 2: Medium
                 [
                     "ເຂົ້າ ປາ ນ້ຳ ຕົມ", "ນັ້ນ ແມ່ນ ພາສາ ລາວ", "ເຫຼົ້າ ເຂົ້າ ໄວ້ ວາງ", "ເຮົາ ເຂົາ ເຈົ້າ ຜູ້", 
-                    "ກິນ ເຂົ້າ ກິນ ນ້ຳ", "ໄປ ຕະຫຼາດ ຊື້ ເຄື່ອງ", "ຂີ່ ລົດ ຈັກ ໄປ ການ", "ນອນ ຫຼັບ ຝັນ ດີ",
-                    "ຕື່ນ ນອນ ຕອນ ເຊົ້າ", "ອາບ ນ້ຳ ລ້າງ ໜ້າ", "ຖູ ແຂ້ວ ນຸ່ງ ເຄື່ອງ", "ໄປ ໂຮງຮຽນ ແຕ່ ເຊົ້າ"
+                    "ກິນ ເຂົ້າ ກິນ ນ້ຳ", "ໄປ ຕະຫຼາດ ຊື້ ເຄື່ອງ"
                 ],
-                // Level 3: Hard
                 [
                     "ສະບາຍດີ ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ການຝຶກພິມ.", "ການພິມສຳຜັດຈະຊ່ວຍໃຫ້ເຈົ້າເຮັດວຽກໄວຂຶ້ນ.", 
-                    "ຈົ່ງຝຶກຝົນຕົນເອງທຸກມື້ເພື່ອຄວາມສຳເລັດ.", "ປະເທດລາວມີສະຖານທີ່ທ່ອງທ່ຽວທາງທຳມະຊາດທີ່ສວຍງາມຫຼາຍແຫ່ງ.",
-                    "ພາສາລາວເປັນພາສາປະຈຳຊາດທີ່ມີເອກະລັກແລະໜ້າຮຽນຮູ້.", "ການອ່ານໜັງສືຊ່ວຍເປີດໂລກກະທັດແລະເພີ່ມພູນປັນຍາ."
+                    "ຈົ່ງຝຶກຝົນຕົນເອງທຸກມື້ເພື່ອຄວາມສຳເລັດ.", "ປະເທດລາວມີສະຖານທີ່ທ່ອງທ່ຽວທາງທຳມະຊາດທີ່ສວຍງາມຫຼາຍແຫ່ງ."
                 ]
             ],
             en: [
-                // Level 0: Beginner
                 [
                     "a s d f j k l ;", "f d s a ; l k j", "a s d f a s d f", "j k l ; j k l ;", "asdf jkl;", 
-                    "fdsa ;lkj", "as df jk l;", "fd sa ;l kj", "a s d f g h j k l ;", "q w e r t y u i o p", 
-                    "z x c v b n m , . /", "aa ss dd ff jj kk ll"
+                    "fdsa ;lkj", "as df jk l;", "fd sa ;l kj", "a s d f g h j k l ;", "q w e r t y u i o p"
                 ],
-                // Level 1: Easy
                 [
                     "cat dog bird fish", "run walk jump play", "sun moon star sky", "red blue green dark", "hello world good",
-                    "happy sad angry calm", "apple orange banana grape", "book pen pencil paper", "desk chair table lamp", 
-                    "house room door window", "car bus train plane", "street road path way"
+                    "happy sad angry calm", "apple orange banana grape", "book pen pencil paper"
                 ],
-                // Level 2: Medium
                 [
                     "beautiful computer keyboard", "programming developer design", "experience knowledge learning", 
-                    "information technology system", "software hardware network", "database server application", 
-                    "internet website browser", "connection security password", "account profile setting"
+                    "information technology system", "software hardware network", "database server application"
                 ],
-                // Level 3: Hard
                 [
                     "The quick brown fox jumps over the lazy dog.", "Touch typing is an essential skill for modern workers.", 
-                    "Practice makes perfect, keep up the good work.", "A journey of a thousand miles begins with a single step.", 
-                    "To be or not to be, that is the question.", "All that glitters is not gold, so be careful."
+                    "Practice makes perfect, keep up the good work.", "A journey of a thousand miles begins with a single step."
                 ]
             ]
         };
 
-        // Standard Lao Keyboard Layout
         const keyboardLayoutData = [
             [
                 ['Backquote','`','~','*','','pinky'],
@@ -333,8 +513,9 @@
             lang: 'la', level: 0, textToType: "", currentIndex: 0,
             startTime: null, errors: 0, isPlaying: false,
             xp: 0, userLevel: 1, comboCount: 0, comboMultiplier: 1,
-            // ເກັບການກົດທີ່ລໍຖ້າ (pending)
-            pendingChars: []
+            pendingChars: [],
+            timerInterval: null,
+            elapsedTime: 0
         };
 
         const dom = {
@@ -347,6 +528,7 @@
             uiXp: document.getElementById('ui-xp'),
             uiWpm: document.getElementById('ui-wpm'),
             uiCombo: document.getElementById('ui-combo'),
+            uiTimer: document.getElementById('ui-timer'),
             overlay: document.getElementById('result-overlay'),
             resWpm: document.getElementById('res-wpm'),
             resAcc: document.getElementById('res-acc'),
@@ -355,10 +537,16 @@
             btnRetry: document.getElementById('btn-retry'),
             keyboardContainer: document.getElementById('keyboard-container'),
             fingerColor: document.getElementById('finger-indicator-color'),
-            fingerText: document.getElementById('finger-indicator-text')
+            fingerText: document.getElementById('finger-indicator-text'),
+            progressFill: document.getElementById('progress-fill'),
+            // Modal elements
+            resetModal: document.getElementById('reset-modal'),
+            modalCancel: document.getElementById('modal-cancel'),
+            modalConfirm: document.getElementById('modal-confirm'),
+            modalCurrentXp: document.getElementById('modal-current-xp'),
+            modalCurrentLevel: document.getElementById('modal-current-level')
         };
 
-        // Build character to key mapping
         const charMap = {};
         keyboardLayoutData.forEach(row => {
             row.forEach(key => {
@@ -371,10 +559,7 @@
         });
         charMap[' '] = { code: 'Space', shift: false, finger: 'thumb' };
 
-        // Lao compound character patterns (ສະຫຼະປະສົມ)
-        // ຮອງຮັບການພິມທີ່ຫຼາກຫຼາຍ
         const laoPatterns = {
-            // ສະຫຼະປະສົມທີ່ຕ້ອງການກົດຫຼາຍຄັ້ງ
             'ເຂົ້າ': { chars: ['ເ', 'ຂ', 'ົ', '້', 'າ'], display: 'ເຂົ້າ' },
             'ນ້ຳ': { chars: ['ນ', '້', 'ຳ'], display: 'ນ້ຳ' },
             'ນັ້ນ': { chars: ['ນ', 'ັ', '້', 'ນ'], display: 'ນັ້ນ' },
@@ -403,28 +588,8 @@
             'ສະ': { chars: ['ສ', 'ະ'], display: 'ສະ' },
             'ບາຍ': { chars: ['ບ', 'າ', 'ຍ'], display: 'ບາຍ' },
             'ດີ': { chars: ['ດ', 'ີ'], display: 'ດີ' },
-            'ລາວ': { chars: ['ລ', 'າ', 'ວ'], display: 'ລາວ' },
-            'ນົກ': { chars: ['ນ', 'ົ', 'ກ'], display: 'ນົກ' },
-            'ໜູ': { chars: ['ໜ', 'ູ'], display: 'ໜູ' },
-            'ປາ': { chars: ['ປ', 'າ'], display: 'ປາ' },
-            'ໝາ': { chars: ['ໝ', 'າ'], display: 'ໝາ' },
-            'ເປັດ': { chars: ['ເ', 'ປ', 'ັ', 'ດ'], display: 'ເປັດ' },
-            'ໄກ່': { chars: ['ໄ', 'ກ', '່'], display: 'ໄກ່' },
-            'ຊ້າງ': { chars: ['ຊ', '້', 'າ', 'ງ'], display: 'ຊ້າງ' },
-            'ມ້າ': { chars: ['ມ', '້', 'າ'], display: 'ມ້າ' },
-            'ດິນ': { chars: ['ດ', 'ິ', 'ນ'], display: 'ດິນ' },
-            'ຕະຫຼາດ': { chars: ['ຕ', 'ະ', 'ຫ', 'ຼ', 'າ', 'ດ'], display: 'ຕະຫຼາດ' }
+            'ລາວ': { chars: ['ລ', 'າ', 'ວ'], display: 'ລາວ' }
         };
-
-        // Build reverse lookup for patterns
-        const patternLookup = {};
-        Object.keys(laoPatterns).forEach(key => {
-            const pattern = laoPatterns[key];
-            // ສ້າງ lookup ຈາກຕົວອັກສອນທຳອິດ
-            const firstChar = pattern.chars[0];
-            if (!patternLookup[firstChar]) patternLookup[firstChar] = [];
-            patternLookup[firstChar].push(key);
-        });
 
         const fingerNamesLao = { pinky: "ນິ້ວກ້ອຍ", ring: "ນິ້ວນາງ", middle: "ນິ້ວກາງ", index: "ນິ້ວຊີ້", thumb: "ນິ້ວໂປ້" };
         const fingerColors = { pinky: "bg-pink-500", ring: "bg-blue-500", middle: "bg-yellow-500", index: "bg-emerald-500", thumb: "bg-purple-500" };
@@ -443,9 +608,7 @@
                 gain.connect(audioCtx.destination);
                 osc.start();
                 osc.stop(audioCtx.currentTime + duration);
-            } catch (e) {
-                console.warn("Audio error:", e);
-            }
+            } catch (e) {}
         }
         function playErrorBeep() { playTone(150, 'sawtooth', 0.2, 0.1); }
         function playSuccessChime() { 
@@ -460,14 +623,23 @@
                     const data = JSON.parse(saved);
                     state.xp = data.xp || 0;
                     state.userLevel = data.userLevel || 1;
-                    dom.uiXp.innerText = state.xp;
-                    dom.uiLevel.innerText = state.userLevel;
+                    updateUIStats();
                 } catch(e) {}
             }
         }
 
         function saveData() {
-            localStorage.setItem('typingMasterPro', JSON.stringify({ xp: state.xp, userLevel: state.userLevel }));
+            localStorage.setItem('typingMasterPro', JSON.stringify({ 
+                xp: state.xp, 
+                userLevel: state.userLevel 
+            }));
+        }
+
+        function updateUIStats() {
+            dom.uiXp.innerText = state.xp;
+            dom.uiLevel.innerText = state.userLevel;
+            dom.modalCurrentXp.innerText = state.xp;
+            dom.modalCurrentLevel.innerText = state.userLevel;
         }
 
         function getRandomText(lang, levelIndex) {
@@ -517,16 +689,12 @@
                 if (i < state.currentIndex) {
                     html += `<span class="text-emerald-400">${char === ' ' ? '<span class="opacity-40 font-mono">␣</span>' : char}</span>`;
                 } else if (i === state.currentIndex) {
-                    // ກວດສອບວ່າມີ pattern ທີ່ກົງກັນບໍ?
                     let patternFound = false;
-                    let patternLength = 1;
-                    
                     if (state.currentIndex + 1 < state.textToType.length) {
                         const remaining = state.textToType.substring(state.currentIndex);
                         for (let key of Object.keys(laoPatterns)) {
                             if (remaining.startsWith(key)) {
                                 patternFound = true;
-                                patternLength = key.length;
                                 break;
                             }
                         }
@@ -550,6 +718,13 @@
                 i++;
             }
             dom.typingDisplay.innerHTML = html;
+            
+            // Update progress bar
+            if (state.textToType.length > 0) {
+                const progress = (state.currentIndex / state.textToType.length) * 100;
+                dom.progressFill.style.width = Math.min(progress, 100) + '%';
+            }
+            
             updateKeyboardHighlight();
         }
 
@@ -562,7 +737,6 @@
                 return;
             }
             
-            // ຊອກຫາ pattern ທີ່ກົງກັນ
             let charToHighlight = state.textToType[state.currentIndex];
             let isPattern = false;
             
@@ -577,7 +751,6 @@
                 }
             }
             
-            // ຖ້າເປັນ pattern, ເອົາຕົວອັກສອນທຳອິດ
             let firstChar = isPattern ? charToHighlight[0] : charToHighlight;
             let keyInfo = charMap[firstChar];
             
@@ -615,6 +788,22 @@
             }
         }
 
+        function startTimer() {
+            if (state.timerInterval) clearInterval(state.timerInterval);
+            state.elapsedTime = 0;
+            state.timerInterval = setInterval(() => {
+                state.elapsedTime++;
+                dom.uiTimer.innerText = state.elapsedTime + 's';
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (state.timerInterval) {
+                clearInterval(state.timerInterval);
+                state.timerInterval = null;
+            }
+        }
+
         function startGame() {
             state.lang = dom.langSelect.value;
             state.level = parseInt(dom.levelSelect.value);
@@ -629,6 +818,8 @@
             
             dom.overlay.classList.add('hidden');
             dom.uiWpm.innerText = '0';
+            dom.progressFill.style.width = '0%';
+            startTimer();
             updateComboUI();
             updateDisplay();
             window.focus();
@@ -659,6 +850,7 @@
 
         function endGame() {
             state.isPlaying = false;
+            stopTimer();
             const stats = calculateStats();
             playSuccessChime();
             
@@ -673,31 +865,30 @@
             }
 
             saveData();
+            updateUIStats();
             
             dom.resWpm.innerText = stats.wpm;
             dom.resAcc.innerText = stats.accuracy;
             dom.resXp.innerText = finalXP;
-            dom.uiXp.innerText = state.xp;
-            dom.uiLevel.innerText = state.userLevel;
             
             dom.overlay.classList.remove('hidden');
+            // Add animation classes
+            dom.overlay.querySelector('h2').className = 'text-4xl font-extrabold text-emerald-400 mb-2 animate__animated animate__bounceIn';
+            dom.overlay.querySelectorAll('.flex.gap-6.mb-6.text-center')[0].className = 'flex gap-6 mb-6 text-center animate__animated animate__fadeInUp';
+            dom.overlay.querySelector('.flex.gap-4').className = 'flex gap-4 animate__animated animate__fadeInUp animate__delay-1s';
         }
 
-        // ກວດສອບວ່າການກົດເຂົ້າມາກົງກັບ pattern ຫຼືບໍ່
         function checkPatternMatch(inputChar, shiftPressed) {
             if (state.currentIndex >= state.textToType.length) return null;
             
             const remaining = state.textToType.substring(state.currentIndex);
             
-            // ກວດສອບທຸກ pattern
             for (let key of Object.keys(laoPatterns)) {
                 if (remaining.startsWith(key)) {
                     const pattern = laoPatterns[key];
-                    // ກວດສອບຕົວອັກສອນທຳອິດ
                     const firstChar = pattern.chars[0];
                     const firstCharInfo = charMap[firstChar];
                     if (firstCharInfo) {
-                        // ກວດສອບວ່າກົດຕົວອັກສອນນີ້ບໍ?
                         const inputInfo = charMap[inputChar];
                         if (inputInfo && inputInfo.code === firstCharInfo.code && inputInfo.shift === firstCharInfo.shift) {
                             return {
@@ -713,21 +904,54 @@
             return null;
         }
 
+        // Modal handlers
+        function openResetModal() {
+            dom.modalCurrentXp.innerText = state.xp;
+            dom.modalCurrentLevel.innerText = state.userLevel;
+            dom.resetModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeResetModal() {
+            dom.resetModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function confirmReset() {
+            localStorage.removeItem('typingMasterPro');
+            state.xp = 0;
+            state.userLevel = 1;
+            updateUIStats();
+            closeResetModal();
+            // Show feedback
+            const display = dom.typingDisplay;
+            display.innerHTML = '<span class="text-emerald-400">✅ ລຶບຄະແນນສຳເລັດ! ເລີ່ມຕົ້ນໃໝ່ໄດ້ແລ້ວ</span>';
+            setTimeout(() => {
+                if (!state.isPlaying) {
+                    display.innerHTML = '<span class="text-gray-500">ກົດ <span class="text-white">ເລີ່ມຕົ້ນ</span> ເພື່ອຝຶກພິມ...</span>';
+                }
+            }, 3000);
+        }
+
         // Event Listeners
         dom.btnStart.addEventListener('click', startGame);
         dom.btnRetry.addEventListener('click', startGame);
-        dom.btnReset.addEventListener('click', () => {
-            if(confirm("ຕ້ອງການລຶບຄະແນນ XP ທັງໝົດເລີ່ມໃໝ່ແທ້ບໍ່?")) {
-                localStorage.removeItem('typingMasterPro');
-                state.xp = 0;
-                state.userLevel = 1;
-                dom.uiXp.innerText = '0';
-                dom.uiLevel.innerText = '1';
-            }
-        });
         dom.btnNext.addEventListener('click', () => {
             if (state.level < 3) dom.levelSelect.value = state.level + 1;
             startGame();
+        });
+
+        // Reset button with modal
+        dom.btnReset.addEventListener('click', openResetModal);
+        dom.modalCancel.addEventListener('click', closeResetModal);
+        dom.modalConfirm.addEventListener('click', confirmReset);
+        dom.resetModal.addEventListener('click', (e) => {
+            if (e.target === dom.resetModal) closeResetModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && dom.resetModal.classList.contains('active')) {
+                closeResetModal();
+            }
         });
 
         window.addEventListener('keydown', (e) => {
@@ -742,19 +966,12 @@
             let inputKey = e.key;
             let shiftPressed = e.shiftKey;
             
-            // ກວດສອບ pattern ກ່ອນ
             const patternResult = checkPatternMatch(inputKey, shiftPressed);
             
             if (patternResult) {
-                // ກົດຖືກຕ້ອງ
                 triggerKeyPress(patternResult.keyInfo.code, false);
-                
-                // ຂ້າມຕົວອັກສອນທັງໝົດໃນ pattern
                 const patternLength = patternResult.chars.length;
-                // ຖ້າ pattern ມີຫຼາຍກວ່າ 1 ຕົວ, ຂ້າມໄປທັງໝົດ
                 if (patternLength > 1) {
-                    // ກວດສອບວ່າຕົວອັກສອນທີ່ເຫຼືອກົງກັນບໍ?
-                    // ຖ້າກົງ, ຂ້າມໄປທັງໝົດ
                     state.currentIndex += patternLength;
                 } else {
                     state.currentIndex += 1;
@@ -770,7 +987,6 @@
                     setTimeout(endGame, 300);
                 }
             } else {
-                // ກວດສອບຕົວອັກສອນດຽວ
                 const expectedChar = state.textToType[state.currentIndex];
                 const expectedInfo = charMap[expectedChar];
                 const inputInfo = charMap[inputKey];
@@ -798,7 +1014,6 @@
                         setTimeout(endGame, 300);
                     }
                 } else {
-                    // ກົດຜິດ
                     let wrongCode = 'Space';
                     if (inputInfo) {
                         wrongCode = inputInfo.code;
@@ -820,6 +1035,7 @@
         // Init
         loadData();
         renderKeyboard();
+        updateUIStats();
     </script>
 </body>
 </html>
