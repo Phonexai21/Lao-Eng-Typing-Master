@@ -183,6 +183,16 @@
         .progress-bar { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
         .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #10b981); border-radius: 3px; transition: width 0.3s ease; width: 0%; }
 
+        /* Word counter badge */
+        .word-counter {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 2px 12px;
+            font-size: 0.75rem;
+            color: #93c5fd;
+        }
+
         @media (max-width: 640px) {
             .modal-content { padding: 1.5rem; margin: 0 1rem; }
             .modal-stats { gap: 1rem; flex-wrap: wrap; }
@@ -244,6 +254,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                 Reset XP
             </button>
+            <span class="word-counter" id="word-counter">📚 0 ຄຳ</span>
         </div>
 
         <div class="glass-panel p-6 mb-4 relative min-h-[120px] flex items-center justify-center text-3xl leading-relaxed tracking-wide shadow-2xl">
@@ -297,65 +308,63 @@
     </div>
 
     <script>
-        // --- Data & Content ---
-        const typingData = {
-            la: [
-                // Level 0: Beginner
-                [
-                    "ຟ ຫ ກ ດ ເ າ ສ ຊ", "ດ ກ ຫ ຟ ຊ ສ າ ເ", "ຟ ຫ ກ ດ ຟ ຫ ກ ດ", "ເ າ ສ ຊ ເ າ ສ ຊ", 
-                    "ຟຫ ກດ ເາ ສຊ", "ດກ ຫຟ ຊສ າເ"
-                ],
-                // Level 1: Easy
-                [
-                    "ພໍ່ ແມ່ ປາ ມາ ໄປ", "ນອນ ກິນ ເຮັດ ດີ ນາ", "ໄກ່ ໄຂ່ ງົວ ຄວາຍ ໝູ", 
-                    "ຮຽນ ຂຽນ ອ່ານ ຫຼິ້ນ", "ສະ ບາຍ ດີ ລາວ", "ນົກ ໜູ ປູ ປາ ໝາ", 
-                    "ວຽກ ງານ", "ເຂົ້າ ນ້ຳ"
-                ],
-                // Level 2: Medium
-                [
-                    "ເຂົ້າ ປາ ນ້ຳ ຕົມ", "ນັ້ນ ແມ່ນ ພາສາ ລາວ", "ເຫຼົ້າ ເຂົ້າ ໄວ້ ວາງ", 
-                    "ເຮົາ ເຂົາ ເຈົ້າ ຜູ້", "ກິນ ເຂົ້າ ກິນ ນ້ຳ", "ໄປ ຕະຫຼາດ ຊື້ ເຄື່ອງ", 
-                    "ວຽກງານ ພັດທະນາ", "ຂຽນ ຈົດໝາຍ"
-                ],
-                // Level 3: Hard
-                [
-                    "ສະບາຍດີ ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ການຝຶກພິມ.", 
-                    "ການພິມສຳຜັດຈະຊ່ວຍໃຫ້ເຈົ້າເຮັດວຽກໄວຂຶ້ນ.", 
-                    "ຈົ່ງຝຶກຝົນຕົນເອງທຸກມື້ເພື່ອຄວາມສຳເລັດ.",
-                    "ການເຮັດວຽກເປັນທີມຮຽກຮ້ອງໃຫ້ມີຄວາມເຂົ້າໃຈແລະເສຍສະຫຼະ."
-                ]
+        // ============================================================
+        // ລາຍການຄຳສັບພາສາລາວ (ຫຼາກຫຼາຍ)
+        // ============================================================
+        const laoWordList = {
+            // Level 0: Beginner - ຄຳສັບພື້ນຖານ
+            0: [
+                "ຟ", "ຫ", "ກ", "ດ", "ເ", "າ", "ສ", "ຊ",
+                "ຟຫ", "ກດ", "ເາ", "ສຊ", "ດກ", "ຫຟ", "ຊສ", "າເ",
+                "ຟຫກ", "ດເາ", "ສຊຟ", "ດກຫ", "ຟຊສ", "າເດ"
             ],
-            en: [
-                // Level 0: Beginner
-                [
-                    "a s d f j k l ;", "f d s a ; l k j", "a s d f a s d f", "j k l ; j k l ;", 
-                    "asdf jkl;", "fdsa ;lkj", "as df jk l;", "fd sa ;l kj"
-                ],
-                // Level 1: Easy
-                [
-                    "cat dog bird fish", "run walk jump play", "sun moon star sky", 
-                    "red blue green dark", "hello world good", "happy sad angry calm"
-                ],
-                // Level 2: Medium
-                [
-                    "beautiful computer keyboard", "programming developer design", 
-                    "experience knowledge learning", "information technology system"
-                ],
-                // Level 3: Hard
-                [
-                    "The quick brown fox jumps over the lazy dog.", 
-                    "Touch typing is an essential skill for modern workers.", 
-                    "Practice makes perfect, keep up the good work."
-                ]
+            // Level 1: Easy - ຄຳສັບທົ່ວໄປ
+            1: [
+                "ພໍ່", "ແມ່", "ປາ", "ມາ", "ໄປ", "ນອນ", "ກິນ", "ເຮັດ", "ດີ", "ນາ",
+                "ໄກ່", "ໄຂ່", "ງົວ", "ຄວາຍ", "ໝູ", "ຮຽນ", "ຂຽນ", "ອ່ານ", "ຫຼິ້ນ",
+                "ສະບາຍ", "ລາວ", "ນົກ", "ໜູ", "ປູ", "ໝາ", "ເປັດ", "ຊ້າງ", "ມ້າ",
+                "ດິນ", "ນ້ຳ", "ລົມ", "ໄຟ", "ເຂົ້າ", "ອາຫານ", "ໂຮງຮຽນ", "ບ້ານ", "ເຮືອນ",
+                "ອ້າຍ", "ເອື້ອຍ", "ນ້ອງ", "ປູ່", "ຍ່າ", "ຕາ", "ຍາຍ", "ລຸງ", "ປ້າ"
+            ],
+            // Level 2: Medium - ຄຳສັບຍາວຂຶ້ນ
+            2: [
+                "ເຂົ້າ", "ນ້ຳ", "ຕົມ", "ນັ້ນ", "ແມ່ນ", "ພາສາ", "ລາວ",
+                "ເຫຼົ້າ", "ໄວ້", "ວາງ", "ເຮົາ", "ເຂົາ", "ເຈົ້າ", "ຜູ້",
+                "ຕະຫຼາດ", "ຊື້", "ເຄື່ອງ", "ວຽກ", "ງານ", "ພັດທະນາ",
+                "ຈົດໝາຍ", "ຂຽນ", "ອ່ານ", "ຮຽນ", "ຮູ້", "ເຫັນ", "ຟັງ",
+                "ເວົ້າ", "ຄິດ", "ຮັກ", "ຊັບ", "ສິນ", "ຄົນ", "ສັງຄົມ",
+                "ປະເທດ", "ຊາດ", "ວັດທະນະທຳ", "ເສດຖະກິດ"
+            ],
+            // Level 3: Hard - ປະໂຫຍກ ແລະ ຄຳສັບຊັບຊ້ອນ
+            3: [
+                "ສະບາຍດີ", "ຍິນດີຕ້ອນຮັບ", "ຝຶກພິມ", "ສຳຜັດ", "ມືອາຊີບ",
+                "ພັດທະນາ", "ຄວາມຮູ້", "ຄວາມສາມາດ", "ປະສົບການ", "ການສຶກສາ",
+                "ເຕັກໂນໂລຊີ", "ຂໍ້ມູນຂ່າວສານ", "ການສື່ສານ", "ປະຊາຊົນ",
+                "ສັນຕິພາບ", "ເອກະລາດ", "ປະຊາທິປະໄຕ", "ວັດທະນາຖາວອນ",
+                "ນະຄອນຫຼວງ", "ວຽງຈັນ", "ຫຼວງພະບາງ", "ມໍລະດົກໂລກ",
+                "ຈຳປາສັກ", "ວັດພູ", "ຊຽງຂວາງ", "ທົ່ງໄຫຫີນ",
+                "ຄວາມພະຍາຍາມ", "ຄວາມສຳເລັດ", "ສຸຂະພາບ", "ກຳລັງກາຍ"
             ]
         };
 
+        // English word list
+        const enWordList = {
+            0: ["a", "s", "d", "f", "j", "k", "l", "as", "df", "jk", "l;", "asdf", "jkl;"],
+            1: ["cat", "dog", "bird", "fish", "run", "walk", "jump", "play", "sun", "moon", "star", "sky",
+                "red", "blue", "green", "dark", "hello", "world", "good", "happy", "sad", "angry", "calm",
+                "apple", "orange", "banana", "grape", "book", "pen", "pencil", "paper"],
+            2: ["beautiful", "computer", "keyboard", "programming", "developer", "design", "experience", 
+                "knowledge", "learning", "information", "technology", "system", "software", "hardware",
+                "network", "database", "server", "application", "internet", "website", "browser"],
+            3: ["The quick brown fox", "Touch typing is essential", "Practice makes perfect",
+                "A journey of a thousand miles", "To be or not to be", "All that glitters is not gold",
+                "Actions speak louder than words", "Honesty is the best policy", "Better late than never"]
+        };
+
         // ============================================================
-        // ການຈັບຄູ່ແປ້ນພິມພາສາລາວທີ່ຖືກຕ້ອງ
-        // ອ້າງອີງຕາມການຈັດຮຽງແປ້ນພິມລາວມາດຕະຖານ
+        // ການຈັບຄູ່ແປ້ນພິມພາສາລາວ
         // ============================================================
         const keyboardLayoutData = [
-            // Row 1: Numbers & Symbols
             [
                 ['Backquote','`','~','*','','pinky'],
                 ['Digit1','1','!','ຢ','','pinky'],
@@ -372,7 +381,6 @@
                 ['Equal','=','+','ໍ','','pinky'],
                 ['Backspace','Bksp','Bksp','Bksp','Bksp','pinky','key-w-2']
             ],
-            // Row 2: QWERTY (ຕົວເທິງ)
             [
                 ['Tab','Tab','Tab','Tab','Tab','pinky','key-w-1-5'],
                 ['KeyQ','q','Q','ົ','','pinky'],
@@ -389,7 +397,6 @@
                 ['BracketRight',']','}','ລ','','pinky'],
                 ['Backslash','\\','|','່','','pinky']
             ],
-            // Row 3: ASDF (ຕົວກາງ)
             [
                 ['CapsLock','Caps','Caps','Caps','Caps','pinky','key-w-1-75'],
                 ['KeyA','a','A','ັ','','pinky'],
@@ -405,7 +412,6 @@
                 ['Quote','\'','"','ງ','','pinky'],
                 ['Enter','Enter','Enter','Enter','Enter','pinky','key-w-2-25']
             ],
-            // Row 4: ZXCV (ຕົວລຸ່ມ)
             [
                 ['ShiftLeft','Shift','Shift','Shift','Shift','pinky','key-w-2-25'],
                 ['KeyZ','z','Z','ຜ','','pinky'],
@@ -420,16 +426,14 @@
                 ['Slash','/','?','ຟ','','pinky'],
                 ['ShiftRight','Shift','Shift','Shift','Shift','pinky','key-w-2-75']
             ],
-            // Row 5: Space
             [
                 ['Space','Space','Space','Space','Space','thumb','key-space']
             ]
         ];
 
         // ============================================================
-        // ຕາຕະລາງການຈັບຄູ່ຕົວອັກສອນພາສາລາວ
+        // ຕາຕະລາງການຈັບຄູ່ຕົວອັກສອນ
         // ============================================================
-        // ສ້າງ charMap ຈາກ keyboardLayoutData
         const charMap = {};
         keyboardLayoutData.forEach(row => {
             row.forEach(key => {
@@ -442,36 +446,30 @@
         });
         charMap[' '] = { code: 'Space', shift: false, finger: 'thumb' };
 
-        // ============================================================
-        // ການຈັບຄູ່ສະເພາະ (ຕາມທີ່ທ່ານໄດ້ຊີ້ແຈງ)
-        // ============================================================
         const specialCharMap = {
-            // ຕົວສະຫຼະ ແລະ ວັນນະຍຸດ
-            '້': { code: 'KeyH', shift: false, finger: 'index' },    // ້ ຢູ່ປຸ່ມ H
-            '່': { code: 'Backslash', shift: false, finger: 'pinky' }, // ່ ຢູ່ປຸ່ມ \
-            'ໍ': { code: 'Equal', shift: false, finger: 'pinky' },    // ໍ ຢູ່ປຸ່ມ =
-            'ຳ': { code: 'KeyE', shift: false, finger: 'middle' },    // ຳ ຢູ່ປຸ່ມ E
-            'ົ': { code: 'KeyQ', shift: true, finger: 'pinky' },      // ົ ຢູ່ປຸ່ມ Shift+Q
-            'ັ': { code: 'KeyA', shift: false, finger: 'pinky' },     // ັ ຢູ່ປຸ່ມ A
-            'ິ': { code: 'KeyY', shift: false, finger: 'index' },     // ິ ຢູ່ປຸ່ມ Y
-            'ີ': { code: 'KeyU', shift: false, finger: 'index' },     // ີ ຢູ່ປຸ່ມ U
-            'ຶ': { code: 'KeyB', shift: false, finger: 'index' },     // ຶ ຢູ່ປຸ່ມ B
-            'ື': { code: 'KeyN', shift: false, finger: 'index' },     // ື ຢູ່ປຸ່ມ N
-            'ຸ': { code: 'Digit5', shift: false, finger: 'index' },   // ຸ ຢູ່ປຸ່ມ 5
-            'ູ': { code: 'Digit6', shift: false, finger: 'index' },   // ູ ຢູ່ປຸ່ມ 6
-            'ຽ': { code: 'KeyP', shift: true, finger: 'pinky' },      // ຽ ຢູ່ປຸ່ມ Shift+P
-            'ຼ': { code: 'KeyO', shift: true, finger: 'ring' },       // ຼ ຢູ່ປຸ່ມ Shift+O
-            // ຕົວພິເສດ
-            'ໜ': { code: 'KeyU', shift: true, finger: 'index' },      // ໜ ຢູ່ປຸ່ມ Shift+U
-            'ໝ': { code: 'KeyW', shift: true, finger: 'ring' },       // ໝ ຢູ່ປຸ່ມ Shift+W
-            'ເ': { code: 'KeyG', shift: false, finger: 'index' },     // ເ ຢູ່ປຸ່ມ G
-            'ໄ': { code: 'KeyW', shift: false, finger: 'ring' },      // ໄ ຢູ່ປຸ່ມ W
-            'ໃ': { code: 'Period', shift: false, finger: 'ring' },    // ໃ ຢູ່ປຸ່ມ .
-            'ແ': { code: 'KeyC', shift: false, finger: 'middle' },    // ແ ຢູ່ປຸ່ມ C
-            'ໂ': { code: 'Digit3', shift: false, finger: 'middle' }    // ໂ ຢູ່ປຸ່ມ 3
+            '້': { code: 'KeyH', shift: false, finger: 'index' },
+            '່': { code: 'Backslash', shift: false, finger: 'pinky' },
+            'ໍ': { code: 'Equal', shift: false, finger: 'pinky' },
+            'ຳ': { code: 'KeyE', shift: false, finger: 'middle' },
+            'ົ': { code: 'KeyQ', shift: true, finger: 'pinky' },
+            'ັ': { code: 'KeyA', shift: false, finger: 'pinky' },
+            'ິ': { code: 'KeyY', shift: false, finger: 'index' },
+            'ີ': { code: 'KeyU', shift: false, finger: 'index' },
+            'ຶ': { code: 'KeyB', shift: false, finger: 'index' },
+            'ື': { code: 'KeyN', shift: false, finger: 'index' },
+            'ຸ': { code: 'Digit5', shift: false, finger: 'index' },
+            'ູ': { code: 'Digit6', shift: false, finger: 'index' },
+            'ຽ': { code: 'KeyP', shift: true, finger: 'pinky' },
+            'ຼ': { code: 'KeyO', shift: true, finger: 'ring' },
+            'ໜ': { code: 'KeyU', shift: true, finger: 'index' },
+            'ໝ': { code: 'KeyW', shift: true, finger: 'ring' },
+            'ເ': { code: 'KeyG', shift: false, finger: 'index' },
+            'ໄ': { code: 'KeyW', shift: false, finger: 'ring' },
+            'ໃ': { code: 'Period', shift: false, finger: 'ring' },
+            'ແ': { code: 'KeyC', shift: false, finger: 'middle' },
+            'ໂ': { code: 'Digit3', shift: false, finger: 'middle' }
         };
 
-        // Merge special mappings into charMap
         Object.keys(specialCharMap).forEach(key => {
             charMap[key] = specialCharMap[key];
         });
@@ -480,7 +478,6 @@
         // ຕາຕະລາງຄຳສັບພາສາລາວ (ສຳລັບການສະແດງແບບ pattern)
         // ============================================================
         const laoPatterns = {
-            // ຄຳທີ່ມີສະຫຼະປະສົມ ແລະ ວັນນະຍຸດ
             'ເຂົ້າ': ['ເ', 'ຂ', 'ົ', '້', 'າ'],
             'ນ້ຳ': ['ນ', '້', 'ຳ'],
             'ນັ້ນ': ['ນ', 'ັ', '້', 'ນ'],
@@ -512,7 +509,6 @@
             'ວຽກງານ': ['ວ', 'ຽ', 'ກ', 'ງ', 'າ', 'ນ'],
             'ພັດທະນາ': ['ພ', 'ັ', 'ດ', 'ທ', 'ະ', 'ນ', 'າ'],
             'ຈົດໝາຍ': ['ຈ', 'ົ', 'ດ', 'ໝ', 'າ', 'ຍ'],
-            // ຄຳທົ່ວໄປ
             'ໄປ': ['ໄ', 'ປ'],
             'ມາ': ['ມ', 'າ'],
             'ປາ': ['ປ', 'າ'],
@@ -537,23 +533,27 @@
             'ໃຫ້': ['ໃ', 'ຫ', '້']
         };
 
-        // Build pattern lookup
-        const patternLookup = {};
-        Object.keys(laoPatterns).forEach(key => {
-            const chars = laoPatterns[key];
-            const firstChar = chars[0];
-            if (!patternLookup[firstChar]) patternLookup[firstChar] = [];
-            patternLookup[firstChar].push(key);
-        });
-
         // ============================================================
-        // State & DOM References
+        // State
         // ============================================================
         let state = {
-            lang: 'la', level: 0, textToType: "", currentIndex: 0,
-            startTime: null, errors: 0, isPlaying: false,
-            xp: 0, userLevel: 1, comboCount: 0, comboMultiplier: 1,
-            timerInterval: null, elapsedTime: 0
+            lang: 'la',
+            level: 0,
+            textToType: "",
+            currentIndex: 0,
+            startTime: null,
+            errors: 0,
+            isPlaying: false,
+            xp: 0,
+            userLevel: 1,
+            comboCount: 0,
+            comboMultiplier: 1,
+            timerInterval: null,
+            elapsedTime: 0,
+            // ສຳລັບການຕິດຕາມຄຳທີ່ສຸ່ມແລ້ວ
+            usedWords: [],
+            totalWordsPracticed: 0,
+            wordHistory: []
         };
 
         const dom = {
@@ -581,11 +581,14 @@
             modalCancel: document.getElementById('modal-cancel'),
             modalConfirm: document.getElementById('modal-confirm'),
             modalCurrentXp: document.getElementById('modal-current-xp'),
-            modalCurrentLevel: document.getElementById('modal-current-level')
+            modalCurrentLevel: document.getElementById('modal-current-level'),
+            wordCounter: document.getElementById('word-counter')
         };
 
         const fingerNamesLao = { pinky: "ນິ້ວກ້ອຍ", ring: "ນິ້ວນາງ", middle: "ນິ້ວກາງ", index: "ນິ້ວຊີ້", thumb: "ນິ້ວໂປ້" };
         const fingerColors = { pinky: "bg-pink-500", ring: "bg-blue-500", middle: "bg-yellow-500", index: "bg-emerald-500", thumb: "bg-purple-500" };
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         // ============================================================
         // Helper Functions
@@ -612,9 +615,49 @@
         }
 
         // ============================================================
+        // ຟັງຊັນສຸ່ມຄຳສັບໃໝ່ (ບໍ່ຊ້ຳເກົ່າ)
+        // ============================================================
+        function getRandomWord(lang, level) {
+            const wordList = lang === 'la' ? laoWordList : enWordList;
+            const words = wordList[level] || wordList[0];
+            
+            if (!words || words.length === 0) {
+                return "ສະບາຍດີ";
+            }
+
+            // ຖ້າຍັງບໍ່ມີປະຫວັດ ຫຼື ໃຊ້ຄົບແລ້ວ, ຣີເຊັດ
+            if (state.usedWords.length >= words.length) {
+                state.usedWords = [];
+            }
+
+            // ກັ່ນຕອງຄຳທີ່ຍັງບໍ່ໄດ້ໃຊ້
+            const availableWords = words.filter(w => !state.usedWords.includes(w));
+            
+            if (availableWords.length === 0) {
+                state.usedWords = [];
+                return words[Math.floor(Math.random() * words.length)];
+            }
+
+            // ສຸ່ມຄຳຈາກລາຍການທີ່ຍັງບໍ່ໄດ້ໃຊ້
+            const randomIndex = Math.floor(Math.random() * availableWords.length);
+            const selectedWord = availableWords[randomIndex];
+            
+            // ບັນທຶກຄຳທີ່ໃຊ້ແລ້ວ
+            state.usedWords.push(selectedWord);
+            state.totalWordsPracticed++;
+            
+            // ບັນທຶກປະຫວັດ (ເກັບ 20 ຄຳຫຼ້າສຸດ)
+            state.wordHistory.unshift(selectedWord);
+            if (state.wordHistory.length > 20) {
+                state.wordHistory.pop();
+            }
+            
+            return selectedWord;
+        }
+
+        // ============================================================
         // Audio Functions
         // ============================================================
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(freq, type, duration, vol) {
             try {
                 if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -646,7 +689,11 @@
                     const data = JSON.parse(saved);
                     state.xp = data.xp || 0;
                     state.userLevel = data.userLevel || 1;
+                    state.totalWordsPracticed = data.totalWordsPracticed || 0;
+                    state.usedWords = data.usedWords || [];
+                    state.wordHistory = data.wordHistory || [];
                     updateUIStats();
+                    updateWordCounter();
                 } catch(e) {}
             }
         }
@@ -654,7 +701,10 @@
         function saveData() {
             localStorage.setItem('typingMasterPro', JSON.stringify({ 
                 xp: state.xp, 
-                userLevel: state.userLevel 
+                userLevel: state.userLevel,
+                totalWordsPracticed: state.totalWordsPracticed,
+                usedWords: state.usedWords,
+                wordHistory: state.wordHistory
             }));
         }
 
@@ -665,10 +715,8 @@
             dom.modalCurrentLevel.innerText = state.userLevel;
         }
 
-        function getRandomText(lang, levelIndex) {
-            const arr = typingData[lang] && typingData[lang][levelIndex];
-            if (!arr || arr.length === 0) return "ສະບາຍດີ";
-            return arr[Math.floor(Math.random() * arr.length)];
+        function updateWordCounter() {
+            dom.wordCounter.textContent = `📚 ${state.totalWordsPracticed} ຄຳ`;
         }
 
         // ============================================================
@@ -817,7 +865,9 @@
         function startGame() {
             state.lang = dom.langSelect.value;
             state.level = parseInt(dom.levelSelect.value);
-            state.textToType = getRandomText(state.lang, state.level);
+            
+            // ສຸ່ມຄຳສັບໃໝ່ (ບໍ່ຊ້ຳເກົ່າ)
+            state.textToType = getRandomWord(state.lang, state.level);
             state.currentIndex = 0;
             state.errors = 0;
             state.comboCount = 0;
@@ -831,6 +881,7 @@
             startTimer();
             updateComboUI();
             updateDisplay();
+            updateWordCounter();
             window.focus();
         }
 
@@ -875,6 +926,7 @@
 
             saveData();
             updateUIStats();
+            updateWordCounter();
             
             dom.resWpm.innerText = stats.wpm;
             dom.resAcc.innerText = stats.accuracy;
@@ -927,7 +979,11 @@
             localStorage.removeItem('typingMasterPro');
             state.xp = 0;
             state.userLevel = 1;
+            state.totalWordsPracticed = 0;
+            state.usedWords = [];
+            state.wordHistory = [];
             updateUIStats();
+            updateWordCounter();
             closeResetModal();
             const display = dom.typingDisplay;
             display.innerHTML = '<span class="text-emerald-400">✅ ລຶບຄະແນນສຳເລັດ! ເລີ່ມຕົ້ນໃໝ່ໄດ້ແລ້ວ</span>';
@@ -1016,6 +1072,7 @@
         loadData();
         renderKeyboard();
         updateUIStats();
+        updateWordCounter();
     </script>
 </body>
 </html>
