@@ -14,7 +14,6 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Typing Master Pro - ຝຶກພິມສຳຜັດ V2">
     <meta property="og:description" content="ເວັບໄຊທ໌ຝຶກພິມສຳຜັດພາສາລາວ ແລະ ອັງກິດອອນລາຍຟຣີ ຝຶກວາງນິ້ວ, ມີຈັບເວລາ ແລະ ເກັບຄະແນນ!">
-    <!-- ທ່ານສາມາດປ່ຽນລິ້ງຮູບພາບດ້ານລຸ່ມນີ້ ເປັນຮູບພາບໜ້າປົກເວັບຂອງທ່ານເອງໄດ້ໃນອະນາຄົດ -->
     <meta property="og:image" content="https://placehold.co/1200x630/0f172a/3b82f6?text=Lao+Typing+Master+Pro">
 
     <title>Typing Master Pro - ຝຶກພິມສຳຜັດ V2</title>
@@ -65,26 +64,26 @@
             user-select: none;
             width: 48px;
             height: 48px;
+            min-width: 48px;
         }
-        .key .primary { font-weight: bold; align-self: flex-start; }
-        .key .secondary { align-self: flex-end; color: #94a3b8; font-size: 0.75rem; }
+        .key .primary { font-weight: bold; align-self: flex-start; font-size: 0.7rem; }
+        .key .secondary { align-self: flex-end; color: #94a3b8; font-size: 0.7rem; }
         
         /* Key Widths */
-        .key-w-1-5 { width: 72px; } /* Tab */
-        .key-w-1-75 { width: 84px; } /* Caps */
-        .key-w-2 { width: 96px; } /* Backspace */
-        .key-w-2-25 { width: 108px; } /* Enter, L-Shift */
-        .key-w-2-75 { width: 132px; } /* R-Shift */
-        .key-space { width: 300px; justify-content: center; align-items: center; }
+        .key-w-1-5 { width: 72px; min-width: 72px; }
+        .key-w-1-75 { width: 84px; min-width: 84px; }
+        .key-w-2 { width: 96px; min-width: 96px; }
+        .key-w-2-25 { width: 108px; min-width: 108px; }
+        .key-w-2-75 { width: 132px; min-width: 132px; }
+        .key-space { width: 300px; min-width: 300px; justify-content: center; align-items: center; }
         
-        /* Finger Colors (Border Bottom Indicators) */
+        /* Finger Colors */
         .finger-pinky { border-bottom-color: #ec4899; }
         .finger-ring { border-bottom-color: #3b82f6; }
         .finger-middle { border-bottom-color: #eab308; }
         .finger-index { border-bottom-color: #10b981; }
         .finger-thumb { border-bottom-color: #8b5cf6; }
 
-        /* Active Key States */
         .key.active {
             transform: translateY(2px);
             border-bottom-width: 2px;
@@ -118,7 +117,6 @@
             75% { transform: translateX(3px) translateY(4px); }
         }
 
-        /* Combo Animation */
         .combo-fire {
             background: linear-gradient(to top, #ef4444, #f59e0b);
             -webkit-background-clip: text;
@@ -213,143 +211,139 @@
         // --- Data & Content ---
         const typingData = {
             la: [
-                // Level 0: Beginner (~30 ຕົວຢ່າງ ຝຶກວາງນິ້ວ ແລະ ສະຫຼະພື້ນຖານ)
+                // Level 0: Beginner
                 [
                     "ຟ ຫ ກ ດ ເ າ ສ ຊ", "ດ ກ ຫ ຟ ຊ ສ າ ເ", "ຟ ຫ ກ ດ ຟ ຫ ກ ດ", "ເ າ ສ ຊ ເ າ ສ ຊ", 
                     "ຟຫ ກດ ເາ ສຊ", "ດກ ຫຟ ຊສ າເ", "ກດຫຟ ສຊາເ", "ຟກດຫ ເສຊາ", "ດຟກຫ ຊສາເ", "ຫກດຟ າເສຊ", 
                     "ກດ ຟຫ ສຊ ເາ", "ຟຟ ຫຫ ກກ ດດ", "ເເ າາ ສສ ຊຊ", "ດດ ກກ ຫຫ ຟຟ", "ຊຊ ສສ າາ ເເ", 
-                    "ຟຫກ ດເາ ສຊຟ", "ດກຫ ຟຊສ າເດ", "ຫກດ ຟສາ ເຊຫ", "ກດຟ ຫຊາ ເສກ", "ຟດກ ຫເສ ຊາຟ", 
-                    "ພ ະ ິ ີ ພ ະ ິ ີ", "ື ົ ໄ ຳ ື ົ ໄ ຳ", "ພະ ພິ ພີ ພື", "ພົ ໄພ ພຳ", "ດິ ດີ ດື ດົ", 
-                    "ໄດ ດຳ ກິ ກີ", "ກື ກົ ໄກ ກຳ", "ສິ ສີ ສື ສົ", "ໄສ ສຳ ຊິ ຊີ", "ຊື ຊົ ໄຊ ຊຳ", 
-                    "ຫິ ຫີ ຫື ຫົ", "ໄຫ ຫຳ ຟິ ຟີ"
+                    "ຟຫກ ດເາ ສຊຟ", "ດກຫ ຟຊສ າເດ", "ຫກດ ຟສາ ເຊຫ", "ກດຟ ຫຊາ ເສກ", "ຟດກ ຫເສ ຊາຟ"
                 ],
-                // Level 1: Easy (~30 ຕົວຢ່າງ ຄຳສັບທົ່ວໄປ)
+                // Level 1: Easy
                 [
                     "ພໍ່ ແມ່ ປາ ມາ ໄປ", "ນອນ ກິນ ເຮັດ ດີ ນາ", "ໄກ່ ໄຂ່ ງົວ ຄວາຍ ໝູ", "ຮຽນ ຂຽນ ອ່ານ ຫຼິ້ນ", "ສະ ບາຍ ດີ ລາວ",
                     "ນົກ ໜູ ປູ ປາ ໝາ", "ເປັດ ໄກ່ ຊ້າງ ມ້າ", "ດິນ ນ້ຳ ລົມ ໄຟ", "ເຂົ້າ ປາ ອາຫານ ນ້ຳ", "ຊ້າງ ມ້າ ງົວ ຄວາຍ",
                     "ໂຮງ ຮຽນ ບ້ານ ເຮືອນ", "ພໍ່ ແມ່ ອ້າຍ ເອື້ອຍ", "ນ້ອງ ປູ່ ຍ່າ ຕາ ຍາຍ", "ລຸງ ປ້າ ອາວ ອາ", "ກິນ ເຂົ້າ ກິນ ນ້ຳ",
-                    "ໄປ ຕະຫຼາດ ຊື້ ເຄື່ອງ", "ຂີ່ ລົດ ຈັກ ໄປ ການ", "ນອນ ຫຼັບ ຝັນ ດີ", "ຕື່ນ ນອນ ຕອນ ເຊົ້າ", "ອາບ ນ້ຳ ລ້າງ ໜ້າ",
-                    "ຖູ ແຂ້ວ ນຸ່ງ ເຄື່ອງ", "ໄປ ໂຮງຮຽນ ແຕ່ ເຊົ້າ", "ຕັ້ງ ໃຈ ຮຽນ ໜັງສື", "ຟັງ ນາຍ ຄູ ອະທິບາຍ", "ເຮັດ ວຽກ ບ້ານ ສົ່ງ",
-                    "ສອບ ເສັງ ໃຫ້ ໄດ້", "ຊ່ວຍ ວຽກ ພໍ່ ແມ່", "ເປັນ ຄົນ ດີ ຂອງ ສັງຄົມ", "ຮັກ ຊາດ ຮັກ ບ້ານ ເກີດ", "ພູມໃຈ ທີ່ ເປັນ ລາວ"
+                    "ໄປ ຕະຫຼາດ ຊື້ ເຄື່ອງ", "ຂີ່ ລົດ ຈັກ ໄປ ການ", "ນອນ ຫຼັບ ຝັນ ດີ", "ຕື່ນ ນອນ ຕອນ ເຊົ້າ", "ອາບ ນ້ຳ ລ້າງ ໜ້າ"
                 ],
-                // Level 2: Medium (~30 ຕົວຢ່າງ ກຸ່ມຄຳສັບ ແລະ ປະໂຫຍກສັ້ນ)
+                // Level 2: Medium
                 [
                     "ໂຮງຮຽນ ປະເທດ ຊາດ", "ວັດທະນະທຳ ສັງຄົມ", "ເສດຖະກິດ ພັດທະນາ", "ປະຊາຊົນ ອິດສະຫຼະ", "ຄອບຄົວ ຄວາມສຸກ",
                     "ສປປ ລາວ ສັນຕິພາບ", "ເອກະລາດ ປະຊາທິປະໄຕ", "ເອກະພາບ ວັດທະນາຖາວອນ", "ນະຄອນຫຼວງ ວຽງຈັນ", "ຫຼວງພະບາງ ມໍລະດົກໂລກ",
                     "ຈຳປາສັກ ວັດພູ ຕາດຟານ", "ຊຽງຂວາງ ທົ່ງໄຫຫີນ", "ຄຳມ່ວນ ຖ້ຳກອງລໍ", "ສະຫວັນນະເຂດ ພະທາດອີງຮັງ", "ອັດຕະປື ດົງອຳພານ",
-                    "ເຊກອງ ຕາດເຊປ້ອງໄລ", "ສາລະວັນ ຕາດເລາະ", "ຜົ້ງສາລີ ຊາຮ້ອຍປີ", "ຫຼວງນ້ຳທາ ອຸດົມໄຊ", "ບໍ່ແກ້ວ ສາມຫຼ່ຽມທອງຄຳ",
-                    "ໄຊຍະບູລີ ບຸນຊ້າງ", "ວຽງຈັນ ວັງວຽງ", "ບໍລິຄຳໄຊ ນ້ຳເທີນ", "ການສຶກສາ ແມ່ນ ກຸນແຈ", "ໄຂ ປະຕູ ສູ່ ຄວາມສຳເລັດ",
-                    "ຄວາມພະຍາຍາມ ຢູ່ບ່ອນໃດ", "ຄວາມສຳເລັດ ຢູ່ບ່ອນນັ້ນ", "ຮັກສາ ສຸຂະພາບ ໃຫ້ແຂງແຮງ", "ອອກກຳລັງກາຍ ເປັນປະຈຳ", "ກິນ ອາຫານ ທີ່ມີ ປະໂຫຍດ"
+                    "ເຊກອງ ຕາດເຊປ້ອງໄລ", "ສາລະວັນ ຕາດເລາະ", "ຜົ້ງສາລີ ຊາຮ້ອຍປີ", "ຫຼວງນ້ຳທາ ອຸດົມໄຊ", "ບໍ່ແກ້ວ ສາມຫຼ່ຽມທອງຄຳ"
                 ],
-                // Level 3: Hard (~30 ຕົວຢ່າງ ປະໂຫຍກຍາວ ແລະ ບົດຄວາມ)
+                // Level 3: Hard
                 [
                     "ສະບາຍດີ ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ການຝຶກພິມ.", "ການພິມສຳຜັດຈະຊ່ວຍໃຫ້ເຈົ້າເຮັດວຽກໄວຂຶ້ນ.", "ຈົ່ງຝຶກຝົນຕົນເອງທຸກມື້ເພື່ອຄວາມສຳເລັດ.",
                     "ປະເທດລາວມີສະຖານທີ່ທ່ອງທ່ຽວທາງທຳມະຊາດທີ່ສວຍງາມຫຼາຍແຫ່ງ.", "ພາສາລາວເປັນພາສາປະຈຳຊາດທີ່ມີເອກະລັກແລະໜ້າຮຽນຮູ້.", 
                     "ການອ່ານໜັງສືຊ່ວຍເປີດໂລກກະທັດແລະເພີ່ມພູນປັນຍາ.", "ເຕັກໂນໂລຊີຂໍ້ມູນຂ່າວສານມີບົດບາດສຳຄັນໃນຍຸກປັດຈຸບັນ.", 
                     "ການເຮັດວຽກເປັນທີມຮຽກຮ້ອງໃຫ້ມີຄວາມເຂົ້າໃຈແລະເສຍສະຫຼະ.", "ຄວາມຊື່ສັດສຸຈະລິດເປັນຄຸນສົມບັດທີ່ທຸກຄົນຄວນມີ.", 
-                    "ການຮັກສາສິ່ງແວດລ້ອມແມ່ນໜ້າທີ່ຂອງໝົດທຸກຄົນໃນສັງຄົມ.", "ປ່າໄມ້ແມ່ນຊັບພະຍາກອນອັນລ້ຳຄ່າຂອງຊາດທີ່ຄວນປົກປັກຮັກສາ.", 
-                    "ການປູກຕົ້ນໄມ້ຊ່ວຍຫຼຸດຜ່ອນພາວະໂລກຮ້ອນແລະເຮັດໃຫ້ອາກາດສົດຊື່ນ.", "ແມ່ຍິງລາວມີຄວາມດຸໝັ່ນຂະຫຍັນພຽນແລະມີສີໄມ້ລາຍມືໃນການຕຳ່ຫູກທໍໄໝ.", 
-                    "ຊາວໜຸ່ມຄືກະດູກສັນຫຼັງຂອງຊາດ ຈົ່ງຕັ້ງໃຈສຶກສາຮ່ຳຮຽນ.", "ການນຳໃຊ້ສື່ສັງຄົມອອນລາຍຄວນມີສະຕິແລະຮູ້ຈັກໄຈ້ແຍກຂໍ້ມູນ.",
-                    "ການຈະລາຈອນໃນຕົວເມືອງມັກຈະຕິດຂັດໃນຊົ່ວໂມງເລັ່ງດ່ວນ.", "ການຂັບຂີ່ຢ່າງປອດໄພຊ່ວຍຫຼຸດຜ່ອນອຸບັດຕິເຫດຕາມທ້ອງຖະໜົນ.", 
-                    "ກິລາຊ່ວຍໃຫ້ຮ່າງກາຍແຂງແຮງແລະສ້າງຄວາມສາມັກຄີໃນໝູ່ຄະນະ.", "ອາຫານລາວມີລົດຊາດຈັດຈ້ານແລະອຸດົມໄປດ້ວຍພືດຜັກສະໝຸນໄພ.", 
-                    "ເຂົ້າໜຽວເປັນອາຫານຫຼັກທີ່ຂາດບໍ່ໄດ້ໃນຄາບເຂົ້າຂອງຄົນລາວສ່ວນໃຫຍ່.", "ສຽງແຄນດັງກັງວານບົ່ງບອກເຖິງວັດທະນະທຳແລະຮີດຄອງປະເພນີອັນຈົບງາມ.", 
-                    "ບຸນຊ່ວງເຮືອປະເພນີເປັນເທດສະການທີ່ສ້າງຄວາມມ່ວນຊື່ນແລະຄຶກຄື້ນ.", "ງານນະມັດສະການພະທາດຫຼວງແມ່ນງານບຸນທາງສາສະໜາທີ່ໃຫຍ່ທີ່ສຸດໃນປະເທດ.", 
-                    "ການທັກທາຍດ້ວຍການນົບແມ່ນມາລະຍາດທີ່ສະແດງເຖິງຄວາມເຄົາລົບ.", "ຄວາມກະຕັນຍູຮູ້ບຸນຄຸນຕໍ່ພໍ່ແມ່ຄູບາອາຈານແມ່ນສິ່ງທີ່ປະເສີດ.",
-                    "ທຳມະຊາດທີ່ສົມບູນຈະນຳມາເຊິ່ງຊີວິດການເປັນຢູ່ທີ່ດີຂອງປະຊາຊົນ.", "ມູນເຊື້ອຄວາມສາມັກຄີປອງດອງແມ່ນກຳລັງແຮງອັນມະຫາສານ.", 
-                    "ການສຶກສາຮ່ຳຮຽນບໍ່ມີວັນສິ້ນສຸດ ເຮົາສາມາດຮຽນຮູ້ໄດ້ຕະຫຼອດຊີວິດ.", "ຄວາມຜິດພາດແມ່ນບົດຮຽນທີ່ຈະຊ່ວຍໃຫ້ເຮົາກ້າວໄປສູ່ຄວາມສຳເລັດ.", 
-                    "ຈົ່ງຍິ້ມຮັບກັບທຸກອຸປະສັກແລ້ວຜ່ານມັນໄປດ້ວຍຄວາມເຂັ້ມແຂງ."
+                    "ການຮັກສາສິ່ງແວດລ້ອມແມ່ນໜ້າທີ່ຂອງໝົດທຸກຄົນໃນສັງຄົມ.", "ປ່າໄມ້ແມ່ນຊັບພະຍາກອນອັນລ້ຳຄ່າຂອງຊາດທີ່ຄວນປົກປັກຮັກສາ."
                 ]
             ],
             en: [
-                // Level 0: Beginner (~30 ຕົວຢ່າງ ຝຶກວາງນິ້ວ)
+                // Level 0: Beginner
                 [
                     "a s d f j k l ;", "f d s a ; l k j", "a s d f a s d f", "j k l ; j k l ;", "asdf jkl;", 
                     "fdsa ;lkj", "as df jk l;", "fd sa ;l kj", "a s d f g h j k l ;", "q w e r t y u i o p", 
-                    "z x c v b n m , . /", "aa ss dd ff jj kk ll", "qq ww ee rr uu ii oo pp", "zz xx cc vv mm ,, .. //", 
-                    "asd qwe zxc fgh rty vbn", "jkl uio m,. ;lk p;/", "the and for are but not", "you all any can had her", 
-                    "was one our out day get", "has him his how man new", "now old see two way who", "boy did its let put say", 
-                    "too use dad mom cat dog", "sun run fun top hop pop", "red big bug mug rug hug", "sit bit hit fit kit lit", 
-                    "mat bat cat hat fat rat", "pen ten hen men den led", "bed red fed wed ted zed", "dot hot lot not pot got"
+                    "z x c v b n m , . /", "aa ss dd ff jj kk ll", "qq ww ee rr uu ii oo pp", "zz xx cc vv mm ,, .. //"
                 ],
-                // Level 1: Easy (~30 ຕົວຢ່າງ ຄຳສັບທົ່ວໄປ)
+                // Level 1: Easy
                 [
                     "cat dog bird fish", "run walk jump play", "sun moon star sky", "red blue green dark", "hello world good",
                     "happy sad angry calm", "apple orange banana grape", "book pen pencil paper", "desk chair table lamp", 
-                    "house room door window", "car bus train plane", "street road path way", "tree flower grass leaf", 
-                    "water fire earth air", "rain snow wind storm", "morning noon evening night", "spring summer autumn winter", 
-                    "monday tuesday wednesday thursday", "friday saturday sunday week", "month year day hour", "minute second time clock", 
-                    "food drink bread milk", "meat cheese egg soup", "rice noodle pasta bean", "sweet sour bitter salty", 
-                    "hot cold warm cool", "big small tall short", "long wide thick thin", "heavy light hard soft", "fast slow quick rapid"
+                    "house room door window", "car bus train plane", "street road path way", "tree flower grass leaf"
                 ],
-                // Level 2: Medium (~30 ຕົວຢ່າງ ກຸ່ມຄຳສັບ ແລະ ປະໂຫຍກສັ້ນ)
+                // Level 2: Medium
                 [
                     "beautiful computer keyboard", "programming developer design", "experience knowledge learning", 
                     "information technology system", "software hardware network", "database server application", 
                     "internet website browser", "connection security password", "account profile setting", 
-                    "message notification update", "download upload transfer", "document folder directory", 
-                    "picture video audio file", "project management timeline", "communication presentation skill", 
-                    "organization strategy planning", "analysis research development", "marketing business finance", 
-                    "investment economic growth", "environment pollution climate", "education university college", 
-                    "student teacher professor", "science mathematics history", "geography literature art", 
-                    "music culture tradition", "government politics law", "society community family", 
-                    "friendship relationship love", "happiness success motivation", "challenge opportunity future"
+                    "message notification update", "download upload transfer", "document folder directory"
                 ],
-                // Level 3: Hard (~30 ຕົວຢ່າງ ປະໂຫຍກຍາວ ແລະ ບົດຄວາມ)
+                // Level 3: Hard
                 [
                     "The quick brown fox jumps over the lazy dog.", "Touch typing is an essential skill for modern workers.", 
                     "Practice makes perfect, keep up the good work.", "A journey of a thousand miles begins with a single step.", 
                     "To be or not to be, that is the question.", "All that glitters is not gold, so be careful.", 
                     "Actions speak louder than words in most situations.", "Honesty is the best policy for a happy life.", 
                     "Better late than never, but never late is better.", "Don't judge a book by its cover without reading it.",
-                    "The early bird catches the worm in the morning.", "Where there is a will, there is always a way.", 
-                    "Rome was not built in a day, it took time.", "Every cloud has a silver lining if you look closely.", 
-                    "Knowledge is power when applied correctly in life.", "Time and tide wait for no man, use it wisely.", 
-                    "Prevention is better than cure in healthcare.", "Read good books to expand your mind and vocabulary.", 
-                    "Continuous learning is the key to personal growth.", "Technology has completely transformed the way we live.",
-                    "Artificial intelligence is shaping the future of humanity.", "Sustainable energy sources are crucial for our planet.", 
-                    "Climate change is a global issue that needs attention.", "Critical thinking helps solve complex problems effectively.", 
-                    "Effective communication builds strong relationships.", "Teamwork divides the task and multiplies the success.", 
-                    "Leadership is about inspiring others to do their best.", "Creativity is intelligence having fun with imagination.", 
-                    "Resilience is the ability to bounce back from adversity.", "Mindfulness helps reduce stress and improve focus.",
-                    "A healthy diet and regular exercise promote well-being.", "Music has the power to heal the soul and mind.", 
-                    "Exploring nature brings peace and tranquility to us.", "Traveling broadens horizons and teaches valuable lessons.", 
-                    "The history of the world is full of fascinating stories."
+                    "The early bird catches the worm in the morning.", "Where there is a will, there is always a way."
                 ]
             ]
         };
 
-        // Standard Keyboard Layout mapped with English and Lao (Normal & Shift states)
-        // Format: [Code, En, EnShift, La, LaShift, FingerType]
+        // Standard Lao Keyboard Layout (ພິມລາວ ມາດຕະຖານ)
+        // Format: [Code, En, EnShift, La, LaShift, FingerType, ExtraClass]
         const keyboardLayoutData = [
+            // Row 1: Numbers & Symbols
             [
-                ['Backquote','`','~','*','£','pinky'], ['Digit1','1','!','ຢ','1','pinky'], ['Digit2','2','@','ຝ','2','ring'], 
-                ['Digit3','3','#','ໂ','3','middle'], ['Digit4','4','$','ຖ','4','index'], ['Digit5','5','%','ຸ','5','index'], 
-                ['Digit6','6','^','ູ','6','index'], ['Digit7','7','&','ຄ','7','index'], ['Digit8','8','*','ຕ','8','middle'], 
-                ['Digit9','9','(','ຈ','9','ring'], ['Digit0','0',')','ຂ','0','pinky'], ['Minus','-','_','ຊ','-','pinky'], 
-                ['Equal','=','+','ໍ','=','pinky'], ['Backspace','Bksp','Bksp','Bksp','Bksp','pinky', 'key-w-2']
+                ['Backquote','`','~','*','','pinky'],
+                ['Digit1','1','!','ຢ','','pinky'],
+                ['Digit2','2','@','ຝ','','ring'],
+                ['Digit3','3','#','ໂ','','middle'],
+                ['Digit4','4','$','ຖ','','index'],
+                ['Digit5','5','%','ຸ','','index'],
+                ['Digit6','6','^','ູ','','index'],
+                ['Digit7','7','&','ຄ','','index'],
+                ['Digit8','8','*','ຕ','','middle'],
+                ['Digit9','9','(','ຈ','','ring'],
+                ['Digit0','0',')','ຂ','','pinky'],
+                ['Minus','-','_','ຊ','','pinky'],
+                ['Equal','=','+','ໍ','','pinky'],
+                ['Backspace','Bksp','Bksp','Bksp','Bksp','pinky','key-w-2']
             ],
+            // Row 2: QWERTY
             [
-                ['Tab','Tab','Tab','Tab','Tab','pinky', 'key-w-1-5'], ['KeyQ','q','Q','ົ','ັ','pinky'], ['KeyW','w','W','ໄ','ໝ','ring'], 
-                ['KeyE','e','E','ຳ','ຼ','middle'], ['KeyR','r','R','ພ','ຣ','index'], ['KeyT','t','T','ະ','+','index'], 
-                ['KeyY','y','Y','ິ','ປ','index'], ['KeyU','u','U','ີ','ໜ','index'], ['KeyI','i','I','ຮ','ຫຼ','middle'], 
-                ['KeyO','o','O','ນ','ຽ','ring'], ['KeyP','p','P','ຍ','ຢ','pinky'], ['BracketLeft','[','{','ບ','-','pinky'], 
-                ['BracketRight',']','}','ລ','ຫຼ','pinky'], ['Backslash','\\','|','່','ໃ','pinky']
+                ['Tab','Tab','Tab','Tab','Tab','pinky','key-w-1-5'],
+                ['KeyQ','q','Q','ົ','','pinky'],
+                ['KeyW','w','W','ໄ','ໝ','ring'],
+                ['KeyE','e','E','ຳ','','middle'],
+                ['KeyR','r','R','ພ','','index'],
+                ['KeyT','t','T','ະ','+','index'],
+                ['KeyY','y','Y','ິ','','index'],
+                ['KeyU','u','U','ີ','ໜ','index'],
+                ['KeyI','i','I','ຮ','','middle'],
+                ['KeyO','o','O','ນ','','ring'],
+                ['KeyP','p','P','ຍ','','pinky'],
+                ['BracketLeft','[','{','ບ','','pinky'],
+                ['BracketRight',']','}','ລ','','pinky'],
+                ['Backslash','\\','|','່','','pinky']
             ],
+            // Row 3: ASDF
             [
-                ['CapsLock','Caps','Caps','Caps','Caps','pinky', 'key-w-1-75'], ['KeyA','a','A','ັ','ฤ','pinky'], ['KeyS','s','S','ຫ','ฆ','ring'], 
-                ['KeyD','d','D','ກ','ฏ','middle'], ['KeyF','f','F','ດ','โ','index'], ['KeyG','g','G','ເ','ฌ','index'], 
-                ['KeyH','h','H','າ','็','index'], ['KeyJ','j','J','ສ','๋','index'], ['KeyK','k','K','ວ','ษ','middle'], 
-                ['KeyL','l','L','ງ','ศ','ring'], ['Semicolon',';',':','ວ','໌','pinky'], ['Quote','\'','"','ງ','ໍ','pinky'], 
-                ['Enter','Enter','Enter','Enter','Enter','pinky', 'key-w-2-25']
+                ['CapsLock','Caps','Caps','Caps','Caps','pinky','key-w-1-75'],
+                ['KeyA','a','A','ັ','','pinky'],
+                ['KeyS','s','S','ຫ','','ring'],
+                ['KeyD','d','D','ກ','','middle'],
+                ['KeyF','f','F','ດ','','index'],
+                ['KeyG','g','G','ເ','','index'],
+                ['KeyH','h','H','າ','','index'],
+                ['KeyJ','j','J','ສ','','index'],
+                ['KeyK','k','K','ວ','','middle'],
+                ['KeyL','l','L','ງ','','ring'],
+                ['Semicolon',';',':','ວ','','pinky'],
+                ['Quote','\'','"','ງ','','pinky'],
+                ['Enter','Enter','Enter','Enter','Enter','pinky','key-w-2-25']
             ],
+            // Row 4: ZXCV
             [
-                ['ShiftLeft','Shift','Shift','Shift','Shift','pinky', 'key-w-2-25'], ['KeyZ','z','Z','ຜ','(','pinky'], ['KeyX','x','X','ປ',')','ring'], 
-                ['KeyC','c','C','ແ','ฉ','middle'], ['KeyV','v','V','ອ','ฮ','index'], ['KeyB','b','B','ຶ','฿','index'], 
-                ['KeyN','n','N','ື','์','index'], ['KeyM','m','M','ທ','?','index'], ['Comma',',','<','ມ','ฒ','middle'], 
-                ['Period','.','>','ໃ','ฬ','ring'], ['Slash','/','?','ຟ','ฦ','pinky'], ['ShiftRight','Shift','Shift','Shift','Shift','pinky', 'key-w-2-75']
+                ['ShiftLeft','Shift','Shift','Shift','Shift','pinky','key-w-2-25'],
+                ['KeyZ','z','Z','ຜ','','pinky'],
+                ['KeyX','x','X','ປ','','ring'],
+                ['KeyC','c','C','ແ','','middle'],
+                ['KeyV','v','V','ອ','','index'],
+                ['KeyB','b','B','ຶ','','index'],
+                ['KeyN','n','N','ື','','index'],
+                ['KeyM','m','M','ທ','','index'],
+                ['Comma',',','<','ມ','','middle'],
+                ['Period','.','>','ໃ','','ring'],
+                ['Slash','/','?','ຟ','','pinky'],
+                ['ShiftRight','Shift','Shift','Shift','Shift','pinky','key-w-2-75']
             ],
+            // Row 5: Space
             [
-                ['Space','Space','Space','Space','Space','thumb', 'key-space']
+                ['Space','Space','Space','Space','Space','thumb','key-space']
             ]
         ];
 
@@ -380,20 +374,25 @@
             fingerText: document.getElementById('finger-indicator-text')
         };
 
-        // Create a fast lookup map for character -> key info
+        // Create character to key mapping
         const charMap = {};
         keyboardLayoutData.forEach(row => {
             row.forEach(key => {
-                const [code, en, enS, la, laS, finger, extClass] = key;
-                // English mapping
-                charMap[en] = { code, shift: false, finger, side: code.includes('Right')||['KeyY','KeyU','KeyI','KeyO','KeyP','KeyH','KeyJ','KeyK','KeyL','KeyN','KeyM'].some(c=>code.includes(c)) ? 'right' : 'left' };
-                charMap[enS] = { code, shift: true, finger, side: charMap[en].side };
-                // Lao mapping
-                charMap[la] = { code, shift: false, finger, side: charMap[en].side };
-                charMap[laS] = { code, shift: true, finger, side: charMap[en].side };
+                const [code, en, enS, la, laS, finger] = key;
+                if (en) charMap[en] = { code, shift: false, finger };
+                if (enS) charMap[enS] = { code, shift: true, finger };
+                if (la) charMap[la] = { code, shift: false, finger };
+                if (laS) charMap[laS] = { code, shift: true, finger };
             });
         });
-        charMap[' '] = { code: 'Space', shift: false, finger: 'thumb', side: 'right' };
+        charMap[' '] = { code: 'Space', shift: false, finger: 'thumb' };
+
+        // Multi-character mappings (Lao compound characters)
+        const multiCharMap = {
+            'ຫຼ': { code: 'KeyO', shift: true, finger: 'ring' },
+            'ໜ': { code: 'KeyU', shift: true, finger: 'index' },
+            'ໝ': { code: 'KeyW', shift: true, finger: 'ring' }
+        };
 
         const fingerNamesLao = { pinky: "ນິ້ວກ້ອຍ", ring: "ນິ້ວນາງ", middle: "ນິ້ວກາງ", index: "ນິ້ວຊີ້", thumb: "ນິ້ວໂປ້" };
         const fingerColors = { pinky: "bg-pink-500", ring: "bg-blue-500", middle: "bg-yellow-500", index: "bg-emerald-500", thumb: "bg-purple-500" };
@@ -404,11 +403,14 @@
                 if (audioCtx.state === 'suspended') audioCtx.resume();
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
-                osc.type = type; osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
                 gain.gain.setValueAtTime(vol, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-                osc.connect(gain); gain.connect(audioCtx.destination);
-                osc.start(); osc.stop(audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
             } catch (e) {
                 console.warn("Audio error:", e);
             }
@@ -422,11 +424,13 @@
         function loadData() {
             const saved = localStorage.getItem('typingMasterPro');
             if (saved) {
-                const data = JSON.parse(saved);
-                state.xp = data.xp || 0;
-                state.userLevel = data.userLevel || 1;
-                dom.uiXp.innerText = state.xp;
-                dom.uiLevel.innerText = state.userLevel;
+                try {
+                    const data = JSON.parse(saved);
+                    state.xp = data.xp || 0;
+                    state.userLevel = data.userLevel || 1;
+                    dom.uiXp.innerText = state.xp;
+                    dom.uiLevel.innerText = state.userLevel;
+                } catch(e) {}
             }
         }
 
@@ -435,33 +439,41 @@
         }
 
         function getRandomText(lang, levelIndex) {
-            const arr = typingData[lang][levelIndex];
+            const arr = typingData[lang] && typingData[lang][levelIndex];
+            if (!arr || arr.length === 0) return "ສະບາຍດີ";
             return arr[Math.floor(Math.random() * arr.length)];
         }
 
         function renderKeyboard() {
-            dom.keyboardContainer.innerHTML = '';
-            keyboardLayoutData.forEach(row => {
+            const container = dom.keyboardContainer;
+            container.innerHTML = '';
+            
+            keyboardLayoutData.forEach((row, rowIndex) => {
                 const rowDiv = document.createElement('div');
                 rowDiv.className = 'keyboard-row';
+                
                 row.forEach(keyInfo => {
                     const [code, en, enS, la, laS, finger, extClass] = keyInfo;
                     const keyDiv = document.createElement('div');
-                    keyDiv.className = `key finger-${finger} ${extClass || ''}`;
+                    let className = `key finger-${finger}`;
+                    if (extClass) className += ` ${extClass}`;
+                    keyDiv.className = className;
                     keyDiv.id = code;
                     
-                    if (code === 'Space' || code.includes('Shift') || code === 'Enter' || code === 'Backspace' || code === 'Tab' || code === 'CapsLock') {
+                    if (code === 'Space') {
+                        keyDiv.innerHTML = `<span class="primary m-auto">Space</span>`;
+                    } else if (code === 'Tab' || code === 'CapsLock' || code === 'ShiftLeft' || code === 'ShiftRight' || code === 'Enter' || code === 'Backspace') {
                         keyDiv.innerHTML = `<span class="primary m-auto">${en}</span>`;
                     } else {
-                        // Display En Top-Left, Lao Bottom-Right
+                        const laDisplay = laS || la;
                         keyDiv.innerHTML = `
-                            <span class="primary text-left text-[10px] sm:text-xs text-gray-300">${en} <span class="text-gray-500 ml-1">${enS}</span></span>
-                            <span class="secondary text-right text-xs sm:text-sm text-white font-bold">${la}</span>
+                            <span class="primary text-left text-[10px] sm:text-xs text-gray-300">${en}</span>
+                            <span class="secondary text-right text-xs sm:text-sm text-white font-bold">${laDisplay}</span>
                         `;
                     }
                     rowDiv.appendChild(keyDiv);
                 });
-                dom.keyboardContainer.appendChild(rowDiv);
+                container.appendChild(rowDiv);
             });
         }
 
@@ -490,24 +502,35 @@
                 return;
             }
             
-            const nextChar = state.textToType[state.currentIndex];
-            const keyInfo = charMap[nextChar];
+            let keyInfo = null;
+            let nextChar = state.textToType[state.currentIndex];
+            
+            // Check for multi-character
+            if (state.currentIndex + 1 < state.textToType.length) {
+                const twoChars = state.textToType.substring(state.currentIndex, state.currentIndex + 2);
+                if (multiCharMap[twoChars]) {
+                    keyInfo = multiCharMap[twoChars];
+                }
+            }
+            
+            if (!keyInfo) {
+                keyInfo = charMap[nextChar];
+            }
 
             if (keyInfo) {
                 const targetKey = document.getElementById(keyInfo.code);
                 if (targetKey) targetKey.classList.add('active');
 
-                // Handle Shift requirement (Opposite hand shift rule)
                 if (keyInfo.shift) {
-                    const shiftId = keyInfo.side === 'right' ? 'ShiftLeft' : 'ShiftRight';
-                    const shiftKey = document.getElementById(shiftId);
-                    if (shiftKey) shiftKey.classList.add('active');
+                    const shiftKeys = ['ShiftLeft', 'ShiftRight'];
+                    shiftKeys.forEach(id => {
+                        const shiftKey = document.getElementById(id);
+                        if (shiftKey) shiftKey.classList.add('active');
+                    });
                 }
 
-                // Update Finger Guidance UI
-                const fingerLao = fingerNamesLao[keyInfo.finger];
-                const hand = keyInfo.side === 'left' ? 'ມືຊ້າຍ' : 'ມືຂວາ';
-                dom.fingerText.innerHTML = `ໃຊ້ <b>${fingerLao}</b> (${hand}) ${keyInfo.shift ? ' + ກົດ Shift ພ້ອມກັນ' : ''}`;
+                const fingerLao = fingerNamesLao[keyInfo.finger] || "ນິ້ວ";
+                dom.fingerText.innerHTML = `ໃຊ້ <b>${fingerLao}</b>${keyInfo.shift ? ' + ກົດ Shift ພ້ອມກັນ' : ''}`;
                 dom.fingerColor.className = `w-3 h-3 rounded-full shadow-[0_0_8px_currentColor] ${fingerColors[keyInfo.finger]}`;
             }
         }
@@ -527,8 +550,12 @@
             state.lang = dom.langSelect.value;
             state.level = parseInt(dom.levelSelect.value);
             state.textToType = getRandomText(state.lang, state.level);
-            state.currentIndex = 0; state.errors = 0; state.comboCount = 0; state.comboMultiplier = 1;
-            state.startTime = null; state.isPlaying = true;
+            state.currentIndex = 0;
+            state.errors = 0;
+            state.comboCount = 0;
+            state.comboMultiplier = 1;
+            state.startTime = null;
+            state.isPlaying = true;
             
             dom.overlay.classList.add('hidden');
             dom.uiWpm.innerText = '0';
@@ -566,11 +593,10 @@
             playSuccessChime();
             
             let baseXP = Math.round(stats.wpm * (state.level + 1) * (stats.accuracy / 100));
-            let finalXP = Math.max(5, baseXP * state.comboMultiplier); // Apply Combo Multiplier
+            let finalXP = Math.max(5, baseXP * state.comboMultiplier);
             
             state.xp += finalXP;
             
-            // Level Up (Every 200 XP = 1 Level)
             let newLevel = Math.floor(state.xp / 200) + 1;
             if (newLevel > state.userLevel) {
                 state.userLevel = newLevel;
@@ -593,8 +619,10 @@
         dom.btnReset.addEventListener('click', () => {
             if(confirm("ຕ້ອງການລຶບຄະແນນ XP ທັງໝົດເລີ່ມໃໝ່ແທ້ບໍ່?")) {
                 localStorage.removeItem('typingMasterPro');
-                state.xp = 0; state.userLevel = 1;
-                dom.uiXp.innerText = '0'; dom.uiLevel.innerText = '1';
+                state.xp = 0;
+                state.userLevel = 1;
+                dom.uiXp.innerText = '0';
+                dom.uiLevel.innerText = '1';
             }
         });
         dom.btnNext.addEventListener('click', () => {
@@ -606,37 +634,59 @@
             if (!state.isPlaying) return;
             if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab'].includes(e.key)) return;
             
-            // ປ້ອງກັນບໍ່ໃຫ້ໜ້າເວັບເລື່ອນເວລາກົດ Spacebar ແລະ ບໍ່ໃຫ້ Backspace ກັບໜ້າຫຼັງ
             if (e.key === ' ' || e.key === 'Backspace') e.preventDefault(); 
             
             if (!state.startTime) state.startTime = new Date();
 
             let inputKey = e.key;
-            // ປ້ອງກັນການພິມຕົວດຽວແຕ່ໄດ້ 2 ຕົວ (ເຊັ່ນ ຫຼ) 
-            let expectedSubstring = state.textToType.substring(state.currentIndex, state.currentIndex + inputKey.length);
+            let expectedChar = state.textToType[state.currentIndex];
             
-            const expectedChar = state.textToType[state.currentIndex];
-            const expectedKeyInfo = charMap[expectedChar];
+            let matchLength = 1;
+            let expectedFull = expectedChar;
             
-            let physicalCode = expectedKeyInfo ? expectedKeyInfo.code : 'Space';
+            // Check multi-character
+            if (state.currentIndex + 1 < state.textToType.length) {
+                const twoChars = state.textToType.substring(state.currentIndex, state.currentIndex + 2);
+                if (multiCharMap[twoChars]) {
+                    expectedFull = twoChars;
+                    matchLength = 2;
+                }
+            }
+            
+            let isMatch = false;
+            let keyInfo = null;
+            
+            if (matchLength === 2 && inputKey === expectedFull) {
+                isMatch = true;
+                keyInfo = multiCharMap[expectedFull];
+            } else if (inputKey === expectedChar) {
+                isMatch = true;
+                keyInfo = charMap[expectedChar];
+            }
 
-            if (inputKey === expectedSubstring) {
-                triggerKeyPress(physicalCode, false);
-                state.currentIndex += inputKey.length;
-                state.comboCount++; // Increase Combo
+            if (isMatch && keyInfo) {
+                triggerKeyPress(keyInfo.code, false);
+                state.currentIndex += matchLength;
+                state.comboCount++;
                 updateComboUI();
                 updateDisplay();
                 
                 dom.uiWpm.innerText = calculateStats().wpm;
 
-                if (state.currentIndex >= state.textToType.length) endGame();
+                if (state.currentIndex >= state.textToType.length) {
+                    setTimeout(endGame, 300);
+                }
             } else {
-                // Determine wrong key code just for visual feedback
-                let wrongCode = charMap[inputKey] ? charMap[inputKey].code : physicalCode;
-                triggerKeyPress(wrongCode, true); 
+                let wrongCode = 'Space';
+                if (charMap[inputKey]) {
+                    wrongCode = charMap[inputKey].code;
+                } else if (charMap[inputKey.toLowerCase()]) {
+                    wrongCode = charMap[inputKey.toLowerCase()].code;
+                }
+                triggerKeyPress(wrongCode, true);
                 
                 state.errors++;
-                state.comboCount = 0; // Reset Combo on Error
+                state.comboCount = 0;
                 updateComboUI();
                 playErrorBeep();
                 
