@@ -322,7 +322,7 @@
         // Format: [Code, En, EnShift, La, LaShift, FingerType]
         const keyboardLayoutData = [
             [
-                ['Backquote','`','~','*','£','pinky'], ['Digit1','1','!','ຢ','1','pinky'], ['Digit2','2','@','ຟ','2','ring'], 
+                ['Backquote','`','~','*','£','pinky'], ['Digit1','1','!','ຢ','1','pinky'], ['Digit2','2','@','ຝ','2','ring'], 
                 ['Digit3','3','#','ໂ','3','middle'], ['Digit4','4','$','ຖ','4','index'], ['Digit5','5','%','ຸ','5','index'], 
                 ['Digit6','6','^','ູ','6','index'], ['Digit7','7','&','ຄ','7','index'], ['Digit8','8','*','ຕ','8','middle'], 
                 ['Digit9','9','(','ຈ','9','ring'], ['Digit0','0',')','ຂ','0','pinky'], ['Minus','-','_','ຊ','-','pinky'], 
@@ -346,7 +346,7 @@
                 ['ShiftLeft','Shift','Shift','Shift','Shift','pinky', 'key-w-2-25'], ['KeyZ','z','Z','ຜ','(','pinky'], ['KeyX','x','X','ປ',')','ring'], 
                 ['KeyC','c','C','ແ','ฉ','middle'], ['KeyV','v','V','ອ','ฮ','index'], ['KeyB','b','B','ຶ','฿','index'], 
                 ['KeyN','n','N','ື','์','index'], ['KeyM','m','M','ທ','?','index'], ['Comma',',','<','ມ','ฒ','middle'], 
-                ['Period','.','>','ໃ','ฬ','ring'], ['Slash','/','?','ຝ','ฦ','pinky'], ['ShiftRight','Shift','Shift','Shift','Shift','pinky', 'key-w-2-75']
+                ['Period','.','>','ໃ','ฬ','ring'], ['Slash','/','?','ຟ','ฦ','pinky'], ['ShiftRight','Shift','Shift','Shift','Shift','pinky', 'key-w-2-75']
             ],
             [
                 ['Space','Space','Space','Space','Space','thumb', 'key-space']
@@ -400,14 +400,18 @@
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(freq, type, duration, vol) {
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = type; osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-            osc.connect(gain); gain.connect(audioCtx.destination);
-            osc.start(); osc.stop(audioCtx.currentTime + duration);
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type; osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                osc.start(); osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.warn("Audio error:", e);
+            }
         }
         function playErrorBeep() { playTone(150, 'sawtooth', 0.2, 0.1); }
         function playSuccessChime() { 
@@ -466,11 +470,11 @@
             for (let i = 0; i < state.textToType.length; i++) {
                 const char = state.textToType[i];
                 if (i < state.currentIndex) {
-                    html += `<span class="text-emerald-400">${char === ' ' ? '&nbsp;' : char}</span>`;
+                    html += `<span class="text-emerald-400">${char === ' ' ? '<span class="opacity-40 font-mono">␣</span>' : char}</span>`;
                 } else if (i === state.currentIndex) {
-                    html += `<span class="text-white text-cursor rounded px-0.5">${char === ' ' ? '&nbsp;' : char}</span>`;
+                    html += `<span class="text-white text-cursor rounded px-0.5">${char === ' ' ? '<span class="opacity-60 font-mono">␣</span>' : char}</span>`;
                 } else {
-                    html += `<span class="text-gray-500">${char === ' ' ? '&nbsp;' : char}</span>`;
+                    html += `<span class="text-gray-500">${char === ' ' ? '<span class="opacity-20 font-mono">␣</span>' : char}</span>`;
                 }
             }
             dom.typingDisplay.innerHTML = html;
@@ -601,18 +605,24 @@
         window.addEventListener('keydown', (e) => {
             if (!state.isPlaying) return;
             if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab'].includes(e.key)) return;
-            if (e.key === ' ') e.preventDefault();
+            
+            // ປ້ອງກັນບໍ່ໃຫ້ໜ້າເວັບເລື່ອນເວລາກົດ Spacebar ແລະ ບໍ່ໃຫ້ Backspace ກັບໜ້າຫຼັງ
+            if (e.key === ' ' || e.key === 'Backspace') e.preventDefault(); 
+            
             if (!state.startTime) state.startTime = new Date();
 
+            let inputKey = e.key;
+            // ປ້ອງກັນການພິມຕົວດຽວແຕ່ໄດ້ 2 ຕົວ (ເຊັ່ນ ຫຼ) 
+            let expectedSubstring = state.textToType.substring(state.currentIndex, state.currentIndex + inputKey.length);
+            
             const expectedChar = state.textToType[state.currentIndex];
             const expectedKeyInfo = charMap[expectedChar];
             
-            // Try to map physical key event code to our char map code for animation
             let physicalCode = expectedKeyInfo ? expectedKeyInfo.code : 'Space';
 
-            if (e.key === expectedChar) {
+            if (inputKey === expectedSubstring) {
                 triggerKeyPress(physicalCode, false);
-                state.currentIndex++;
+                state.currentIndex += inputKey.length;
                 state.comboCount++; // Increase Combo
                 updateComboUI();
                 updateDisplay();
@@ -621,8 +631,8 @@
 
                 if (state.currentIndex >= state.textToType.length) endGame();
             } else {
-                // Determine wrong key code just for visual feedback (if possible)
-                let wrongCode = charMap[e.key] ? charMap[e.key].code : physicalCode;
+                // Determine wrong key code just for visual feedback
+                let wrongCode = charMap[inputKey] ? charMap[inputKey].code : physicalCode;
                 triggerKeyPress(wrongCode, true); 
                 
                 state.errors++;
