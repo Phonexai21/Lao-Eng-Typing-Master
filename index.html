@@ -167,122 +167,30 @@
             from { transform: translateY(30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        .modal-icon {
-            font-size: 3.5rem;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-        .modal-title {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #f59e0b;
-            margin-bottom: 0.75rem;
-        }
-        .modal-subtitle {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        .modal-stats {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            padding: 0.75rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .modal-stat-item {
-            text-align: center;
-        }
-        .modal-stat-value {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #60a5fa;
-        }
-        .modal-stat-label {
-            font-size: 0.7rem;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .modal-buttons {
-            display: flex;
-            gap: 0.75rem;
-            justify-content: center;
-        }
-        .modal-btn {
-            padding: 0.6rem 1.5rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-            flex: 1;
-        }
-        .modal-btn-danger {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: white;
-        }
-        .modal-btn-danger:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px -8px rgba(220, 38, 38, 0.4);
-        }
-        .modal-btn-danger:active {
-            transform: scale(0.95);
-        }
-        .modal-btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .modal-btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            transform: translateY(-2px);
-        }
-        .modal-btn-secondary:active {
-            transform: scale(0.95);
-        }
+        .modal-icon { font-size: 3.5rem; text-align: center; margin-bottom: 0.5rem; }
+        .modal-title { text-align: center; font-size: 1.5rem; font-weight: 800; color: #f59e0b; margin-bottom: 0.75rem; }
+        .modal-subtitle { text-align: center; color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; }
+        .modal-stats { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; padding: 0.75rem; background: rgba(0, 0, 0, 0.3); border-radius: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .modal-stat-item { text-align: center; }
+        .modal-stat-value { font-size: 1.25rem; font-weight: 700; color: #60a5fa; }
+        .modal-stat-label { font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+        .modal-buttons { display: flex; gap: 0.75rem; justify-content: center; }
+        .modal-btn { padding: 0.6rem 1.5rem; border-radius: 0.75rem; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; transition: all 0.2s; flex: 1; }
+        .modal-btn-danger { background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; }
+        .modal-btn-danger:hover { transform: translateY(-2px); box-shadow: 0 8px 25px -8px rgba(220, 38, 38, 0.4); }
+        .modal-btn-danger:active { transform: scale(0.95); }
+        .modal-btn-secondary { background: rgba(255, 255, 255, 0.1); color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .modal-btn-secondary:hover { background: rgba(255, 255, 255, 0.2); color: white; transform: translateY(-2px); }
+        .modal-btn-secondary:active { transform: scale(0.95); }
 
-        /* Progress Bar */
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            overflow: hidden;
-            margin-top: 1rem;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6, #10b981);
-            border-radius: 3px;
-            transition: width 0.3s ease;
-            width: 0%;
-        }
+        .progress-bar { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; overflow: hidden; margin-top: 1rem; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #10b981); border-radius: 3px; transition: width 0.3s ease; width: 0%; }
 
-        /* Responsive */
         @media (max-width: 640px) {
-            .modal-content {
-                padding: 1.5rem;
-                margin: 0 1rem;
-            }
-            .modal-stats {
-                gap: 1rem;
-                flex-wrap: wrap;
-            }
-            .modal-buttons {
-                flex-direction: column;
-            }
-            .modal-btn {
-                padding: 0.75rem;
-            }
+            .modal-content { padding: 1.5rem; margin: 0 1rem; }
+            .modal-stats { gap: 1rem; flex-wrap: wrap; }
+            .modal-buttons { flex-direction: column; }
+            .modal-btn { padding: 0.75rem; }
         }
     </style>
 </head>
@@ -335,7 +243,7 @@
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
                 ເລີ່ມຕົ້ນ
             </button>
-            <button id="btn-reset" class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-sm text-gray-300 transition-all active:scale-95 flex items-center gap-2" title="ລຶບຂໍ້ມູນເກົ່າ">
+            <button id="btn-reset" class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-sm text-gray-300 transition-all active:scale-95 flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                 Reset XP
             </button>
@@ -346,7 +254,6 @@
                 <span class="text-gray-500">ກົດ <span class="text-white">ເລີ່ມຕົ້ນ</span> ເພື່ອຝຶກພິມ...</span>
             </div>
             
-            <!-- Progress Bar -->
             <div class="absolute bottom-2 left-6 right-6">
                 <div class="progress-bar">
                     <div class="progress-bar-fill" id="progress-fill"></div>
@@ -380,19 +287,10 @@
         <div class="modal-content">
             <div class="modal-icon">⚠️</div>
             <h2 class="modal-title">ລຶບຄະແນນ XP ທັງໝົດ?</h2>
-            <p class="modal-subtitle">
-                ທ່ານກຳລັງຈະລຶບຂໍ້ມູນຄວາມກ້າວໜ້າທັງໝົດ<br>
-                <span class="text-gray-500 text-sm">ການກະທຳນີ້ບໍ່ສາມາດກັບຄືນໄດ້</span>
-            </p>
+            <p class="modal-subtitle">ທ່ານກຳລັງຈະລຶບຂໍ້ມູນຄວາມກ້າວໜ້າທັງໝົດ<br><span class="text-gray-500 text-sm">ການກະທຳນີ້ບໍ່ສາມາດກັບຄືນໄດ້</span></p>
             <div class="modal-stats">
-                <div class="modal-stat-item">
-                    <div class="modal-stat-value" id="modal-current-xp">0</div>
-                    <div class="modal-stat-label">XP ປັດຈຸບັນ</div>
-                </div>
-                <div class="modal-stat-item">
-                    <div class="modal-stat-value" id="modal-current-level">1</div>
-                    <div class="modal-stat-label">Level</div>
-                </div>
+                <div class="modal-stat-item"><div class="modal-stat-value" id="modal-current-xp">0</div><div class="modal-stat-label">XP ປັດຈຸບັນ</div></div>
+                <div class="modal-stat-item"><div class="modal-stat-value" id="modal-current-level">1</div><div class="modal-stat-label">Level</div></div>
             </div>
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-secondary" id="modal-cancel">ຍົກເລີກ</button>
@@ -405,39 +303,49 @@
         // --- Data & Content ---
         const typingData = {
             la: [
+                // Level 0: Beginner
                 [
                     "ຟ ຫ ກ ດ ເ າ ສ ຊ", "ດ ກ ຫ ຟ ຊ ສ າ ເ", "ຟ ຫ ກ ດ ຟ ຫ ກ ດ", "ເ າ ສ ຊ ເ າ ສ ຊ", 
-                    "ຟຫ ກດ ເາ ສຊ", "ດກ ຫຟ ຊສ າເ", "ກດຫຟ ສຊາເ"
+                    "ຟຫ ກດ ເາ ສຊ", "ດກ ຫຟ ຊສ າເ"
                 ],
+                // Level 1: Easy
                 [
-                    "ພໍ່ ແມ່ ປາ ມາ ໄປ", "ນອນ ກິນ ເຮັດ ດີ ນາ", "ໄກ່ ໄຂ່ ງົວ ຄວາຍ ໝູ", "ຮຽນ ຂຽນ ອ່ານ ຫຼິ້ນ", "ສະ ບາຍ ດີ ລາວ",
-                    "ນົກ ໜູ ປູ ປາ ໝາ", "ເປັດ ໄກ່ ຊ້າງ ມ້າ", "ດິນ ນ້ຳ ລົມ ໄຟ"
+                    "ພໍ່ ແມ່ ປາ ມາ ໄປ", "ນອນ ກິນ ເຮັດ ດີ ນາ", "ໄກ່ ໄຂ່ ງົວ ຄວາຍ ໝູ", 
+                    "ຮຽນ ຂຽນ ອ່ານ ຫຼິ້ນ", "ສະ ບາຍ ດີ ລາວ", "ນົກ ໜູ ປູ ປາ ໝາ"
                 ],
+                // Level 2: Medium
                 [
-                    "ເຂົ້າ ປາ ນ້ຳ ຕົມ", "ນັ້ນ ແມ່ນ ພາສາ ລາວ", "ເຫຼົ້າ ເຂົ້າ ໄວ້ ວາງ", "ເຮົາ ເຂົາ ເຈົ້າ ຜູ້", 
-                    "ກິນ ເຂົ້າ ກິນ ນ້ຳ", "ໄປ ຕະຫຼາດ ຊື້ ເຄື່ອງ"
+                    "ເຂົ້າ ປາ ນ້ຳ ຕົມ", "ນັ້ນ ແມ່ນ ພາສາ ລາວ", "ເຫຼົ້າ ເຂົ້າ ໄວ້ ວາງ", 
+                    "ເຮົາ ເຂົາ ເຈົ້າ ຜູ້", "ກິນ ເຂົ້າ ກິນ ນ້ຳ", "ໄປ ຕະຫຼາດ ຊື້ ເຄື່ອງ"
                 ],
+                // Level 3: Hard
                 [
-                    "ສະບາຍດີ ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ການຝຶກພິມ.", "ການພິມສຳຜັດຈະຊ່ວຍໃຫ້ເຈົ້າເຮັດວຽກໄວຂຶ້ນ.", 
-                    "ຈົ່ງຝຶກຝົນຕົນເອງທຸກມື້ເພື່ອຄວາມສຳເລັດ.", "ປະເທດລາວມີສະຖານທີ່ທ່ອງທ່ຽວທາງທຳມະຊາດທີ່ສວຍງາມຫຼາຍແຫ່ງ."
+                    "ສະບາຍດີ ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ການຝຶກພິມ.", 
+                    "ການພິມສຳຜັດຈະຊ່ວຍໃຫ້ເຈົ້າເຮັດວຽກໄວຂຶ້ນ.", 
+                    "ຈົ່ງຝຶກຝົນຕົນເອງທຸກມື້ເພື່ອຄວາມສຳເລັດ."
                 ]
             ],
             en: [
+                // Level 0: Beginner
                 [
-                    "a s d f j k l ;", "f d s a ; l k j", "a s d f a s d f", "j k l ; j k l ;", "asdf jkl;", 
-                    "fdsa ;lkj", "as df jk l;", "fd sa ;l kj", "a s d f g h j k l ;", "q w e r t y u i o p"
+                    "a s d f j k l ;", "f d s a ; l k j", "a s d f a s d f", "j k l ; j k l ;", 
+                    "asdf jkl;", "fdsa ;lkj", "as df jk l;", "fd sa ;l kj"
                 ],
+                // Level 1: Easy
                 [
-                    "cat dog bird fish", "run walk jump play", "sun moon star sky", "red blue green dark", "hello world good",
-                    "happy sad angry calm", "apple orange banana grape", "book pen pencil paper"
+                    "cat dog bird fish", "run walk jump play", "sun moon star sky", 
+                    "red blue green dark", "hello world good", "happy sad angry calm"
                 ],
+                // Level 2: Medium
                 [
-                    "beautiful computer keyboard", "programming developer design", "experience knowledge learning", 
-                    "information technology system", "software hardware network", "database server application"
+                    "beautiful computer keyboard", "programming developer design", 
+                    "experience knowledge learning", "information technology system"
                 ],
+                // Level 3: Hard
                 [
-                    "The quick brown fox jumps over the lazy dog.", "Touch typing is an essential skill for modern workers.", 
-                    "Practice makes perfect, keep up the good work.", "A journey of a thousand miles begins with a single step."
+                    "The quick brown fox jumps over the lazy dog.", 
+                    "Touch typing is an essential skill for modern workers.", 
+                    "Practice makes perfect, keep up the good work."
                 ]
             ]
         };
@@ -513,9 +421,7 @@
             lang: 'la', level: 0, textToType: "", currentIndex: 0,
             startTime: null, errors: 0, isPlaying: false,
             xp: 0, userLevel: 1, comboCount: 0, comboMultiplier: 1,
-            pendingChars: [],
-            timerInterval: null,
-            elapsedTime: 0
+            timerInterval: null, elapsedTime: 0
         };
 
         const dom = {
@@ -539,7 +445,6 @@
             fingerColor: document.getElementById('finger-indicator-color'),
             fingerText: document.getElementById('finger-indicator-text'),
             progressFill: document.getElementById('progress-fill'),
-            // Modal elements
             resetModal: document.getElementById('reset-modal'),
             modalCancel: document.getElementById('modal-cancel'),
             modalConfirm: document.getElementById('modal-confirm'),
@@ -547,6 +452,7 @@
             modalCurrentLevel: document.getElementById('modal-current-level')
         };
 
+        // Build charMap
         const charMap = {};
         keyboardLayoutData.forEach(row => {
             row.forEach(key => {
@@ -559,37 +465,75 @@
         });
         charMap[' '] = { code: 'Space', shift: false, finger: 'thumb' };
 
+        // Full Lao pattern mapping with correct key sequences
+        // Each pattern defines what characters need to be typed in sequence
         const laoPatterns = {
-            'ເຂົ້າ': { chars: ['ເ', 'ຂ', 'ົ', '້', 'າ'], display: 'ເຂົ້າ' },
-            'ນ້ຳ': { chars: ['ນ', '້', 'ຳ'], display: 'ນ້ຳ' },
-            'ນັ້ນ': { chars: ['ນ', 'ັ', '້', 'ນ'], display: 'ນັ້ນ' },
-            'ຫຼ': { chars: ['ຫ', 'ຼ'], display: 'ຫຼ' },
-            'ຫຼວງ': { chars: ['ຫ', 'ຼ', 'ວ', 'ງ'], display: 'ຫຼວງ' },
-            'ໜ': { chars: ['ໜ'], display: 'ໜ' },
-            'ໝ': { chars: ['ໝ'], display: 'ໝ' },
-            'ເຫຼົ້າ': { chars: ['ເ', 'ຫ', 'ຼ', 'ົ້', 'າ'], display: 'ເຫຼົ້າ' },
-            'ເຮົາ': { chars: ['ເ', 'ຮ', 'ົ', 'າ'], display: 'ເຮົາ' },
-            'ເຂົາ': { chars: ['ເ', 'ຂ', 'ົ', 'າ'], display: 'ເຂົາ' },
-            'ເຈົ້າ': { chars: ['ເ', 'ຈ', 'ົ້', 'າ'], display: 'ເຈົ້າ' },
-            'ຜູ້': { chars: ['ຜ', 'ູ້'], display: 'ຜູ້' },
-            'ຄວາຍ': { chars: ['ຄ', 'ວ', 'າ', 'ຍ'], display: 'ຄວາຍ' },
-            'ງົວ': { chars: ['ງ', 'ົ', 'ວ'], display: 'ງົວ' },
-            'ລົມ': { chars: ['ລ', 'ົ', 'ມ'], display: 'ລົມ' },
-            'ໄຟ': { chars: ['ໄ', 'ຟ'], display: 'ໄຟ' },
-            'ນ້ອງ': { chars: ['ນ', '້', 'ອ', 'ງ'], display: 'ນ້ອງ' },
-            'ເມືອງ': { chars: ['ເ', 'ມ', 'ື', 'ອ', 'ງ'], display: 'ເມືອງ' },
-            'ເຮືອນ': { chars: ['ເ', 'ຮ', 'ື', 'ອ', 'ນ'], display: 'ເຮືອນ' },
-            'ບ້ານ': { chars: ['ບ', '້', 'າ', 'ນ'], display: 'ບ້ານ' },
-            'ໂຮງ': { chars: ['ໂ', 'ຮ', 'ງ'], display: 'ໂຮງ' },
-            'ຮຽນ': { chars: ['ຮ', 'ຽ', 'ນ'], display: 'ຮຽນ' },
-            'ຂຽນ': { chars: ['ຂ', 'ຽ', 'ນ'], display: 'ຂຽນ' },
-            'ອ່ານ': { chars: ['ອ', '່', 'າ', 'ນ'], display: 'ອ່ານ' },
-            'ຫຼິ້ນ': { chars: ['ຫ', 'ຼ', 'ິ້', 'ນ'], display: 'ຫຼິ້ນ' },
-            'ສະ': { chars: ['ສ', 'ະ'], display: 'ສະ' },
-            'ບາຍ': { chars: ['ບ', 'າ', 'ຍ'], display: 'ບາຍ' },
-            'ດີ': { chars: ['ດ', 'ີ'], display: 'ດີ' },
-            'ລາວ': { chars: ['ລ', 'າ', 'ວ'], display: 'ລາວ' }
+            // Simple words
+            'ໄປ': { chars: ['ໄ', 'ປ'] },
+            'ມາ': { chars: ['ມ', 'າ'] },
+            'ປາ': { chars: ['ປ', 'າ'] },
+            'ດີ': { chars: ['ດ', 'ີ'] },
+            'ນາ': { chars: ['ນ', 'າ'] },
+            'ກິນ': { chars: ['ກ', 'ິ', 'ນ'] },
+            'ນອນ': { chars: ['ນ', 'ອ', 'ນ'] },
+            'ເຮັດ': { chars: ['ເ', 'ຮ', 'ັ', 'ດ'] },
+            'ລາວ': { chars: ['ລ', 'າ', 'ວ'] },
+            'ສະ': { chars: ['ສ', 'ະ'] },
+            'ບາຍ': { chars: ['ບ', 'າ', 'ຍ'] },
+            
+            // Words with tone marks
+            'ພໍ່': { chars: ['ພ', 'ໍ', '່'] },
+            'ແມ່': { chars: ['ແ', 'ມ', '່'] },
+            'ນ້ຳ': { chars: ['ນ', '້', 'ຳ'] },
+            'ໄກ່': { chars: ['ໄ', 'ກ', '່'] },
+            'ໄຂ່': { chars: ['ໄ', 'ຂ', '່'] },
+            'ຊ້າງ': { chars: ['ຊ', '້', 'າ', 'ງ'] },
+            'ມ້າ': { chars: ['ມ', '້', 'າ'] },
+            'ບ້ານ': { chars: ['ບ', '້', 'າ', 'ນ'] },
+            'ນ້ອງ': { chars: ['ນ', '້', 'ອ', 'ງ'] },
+            'ຜູ້': { chars: ['ຜ', 'ູ້'] },
+            'ເຈົ້າ': { chars: ['ເ', 'ຈ', 'ົ້', 'າ'] },
+            'ນັ້ນ': { chars: ['ນ', 'ັ', '້', 'ນ'] },
+            'ອ່ານ': { chars: ['ອ', '່', 'າ', 'ນ'] },
+            'ຫຼິ້ນ': { chars: ['ຫ', 'ຼ', 'ິ້', 'ນ'] },
+            
+            // Words with ຫຼ (2 ways to type)
+            'ຫຼ': { chars: ['ຫ', 'ຼ'] },
+            'ຫຼວງ': { chars: ['ຫ', 'ຼ', 'ວ', 'ງ'] },
+            'ຕະຫຼາດ': { chars: ['ຕ', 'ະ', 'ຫ', 'ຼ', 'າ', 'ດ'] },
+            
+            // Special consonants
+            'ໜ': { chars: ['ໜ'] },
+            'ໝ': { chars: ['ໝ'] },
+            'ໜູ': { chars: ['ໜ', 'ູ'] },
+            'ໝາ': { chars: ['ໝ', 'າ'] },
+            'ໝູ': { chars: ['ໝ', 'ູ'] },
+            
+            // Compound vowels
+            'ເຂົ້າ': { chars: ['ເ', 'ຂ', 'ົ', '້', 'າ'] },
+            'ເຫຼົ້າ': { chars: ['ເ', 'ຫ', 'ຼ', 'ົ້', 'າ'] },
+            'ເຮົາ': { chars: ['ເ', 'ຮ', 'ົ', 'າ'] },
+            'ເຂົາ': { chars: ['ເ', 'ຂ', 'ົ', 'າ'] },
+            'ເມືອງ': { chars: ['ເ', 'ມ', 'ື', 'ອ', 'ງ'] },
+            'ເຮືອນ': { chars: ['ເ', 'ຮ', 'ື', 'ອ', 'ນ'] },
+            'ຄວາຍ': { chars: ['ຄ', 'ວ', 'າ', 'ຍ'] },
+            'ງົວ': { chars: ['ງ', 'ົ', 'ວ'] },
+            'ລົມ': { chars: ['ລ', 'ົ', 'ມ'] },
+            'ໄຟ': { chars: ['ໄ', 'ຟ'] },
+            'ໂຮງ': { chars: ['ໂ', 'ຮ', 'ງ'] },
+            'ຮຽນ': { chars: ['ຮ', 'ຽ', 'ນ'] },
+            'ຂຽນ': { chars: ['ຂ', 'ຽ', 'ນ'] },
+            'ສະບາຍ': { chars: ['ສ', 'ະ', 'ບ', 'າ', 'ຍ'] }
         };
+
+        // Build reverse lookup for pattern matching
+        const patternLookup = {};
+        Object.keys(laoPatterns).forEach(key => {
+            const pattern = laoPatterns[key];
+            const firstChar = pattern.chars[0];
+            if (!patternLookup[firstChar]) patternLookup[firstChar] = [];
+            patternLookup[firstChar].push(key);
+        });
 
         const fingerNamesLao = { pinky: "ນິ້ວກ້ອຍ", ring: "ນິ້ວນາງ", middle: "ນິ້ວກາງ", index: "ນິ້ວຊີ້", thumb: "ນິ້ວໂປ້" };
         const fingerColors = { pinky: "bg-pink-500", ring: "bg-blue-500", middle: "bg-yellow-500", index: "bg-emerald-500", thumb: "bg-purple-500" };
@@ -681,34 +625,60 @@
             });
         }
 
+        // Get the expected character(s) at current position
+        function getExpectedAtPosition(index) {
+            if (index >= state.textToType.length) return null;
+            
+            // Check if there's a pattern match at this position
+            const remaining = state.textToType.substring(index);
+            for (let key of Object.keys(laoPatterns)) {
+                if (remaining.startsWith(key)) {
+                    return {
+                        type: 'pattern',
+                        value: key,
+                        chars: laoPatterns[key].chars,
+                        length: key.length
+                    };
+                }
+            }
+            
+            // Single character
+            return {
+                type: 'char',
+                value: state.textToType[index],
+                chars: [state.textToType[index]],
+                length: 1
+            };
+        }
+
+        function getKeyInfo(char) {
+            // Handle multi-character special cases
+            if (char === 'ໜ') return charMap['ໜ'] || charMap['ຫ'] ? { code: 'KeyU', shift: true, finger: 'index' } : null;
+            if (char === 'ໝ') return charMap['ໝ'] || charMap['ຫ'] ? { code: 'KeyW', shift: true, finger: 'ring' } : null;
+            if (char === 'ຼ') return { code: 'KeyO', shift: true, finger: 'ring' };
+            if (char === '້') return { code: 'Digit6', shift: true, finger: 'index' };
+            if (char === '່') return { code: 'Backslash', shift: false, finger: 'pinky' };
+            if (char === 'ໍ') return { code: 'Equal', shift: false, finger: 'pinky' };
+            if (char === 'ເ') return { code: 'KeyG', shift: false, finger: 'index' };
+            
+            return charMap[char] || null;
+        }
+
         function updateDisplay() {
             let html = '';
             let i = 0;
             while (i < state.textToType.length) {
+                const expected = getExpectedAtPosition(i);
+                if (!expected) break;
+                
                 const char = state.textToType[i];
                 if (i < state.currentIndex) {
                     html += `<span class="text-emerald-400">${char === ' ' ? '<span class="opacity-40 font-mono">␣</span>' : char}</span>`;
                 } else if (i === state.currentIndex) {
-                    let patternFound = false;
-                    if (state.currentIndex + 1 < state.textToType.length) {
-                        const remaining = state.textToType.substring(state.currentIndex);
-                        for (let key of Object.keys(laoPatterns)) {
-                            if (remaining.startsWith(key)) {
-                                patternFound = true;
-                                break;
-                            }
-                        }
-                    }
-                    
-                    if (patternFound) {
-                        const remaining = state.textToType.substring(state.currentIndex);
-                        const matchedKey = Object.keys(laoPatterns).find(k => remaining.startsWith(k));
-                        if (matchedKey) {
-                            html += `<span class="text-white text-cursor rounded px-0.5 lao-char-highlight">${matchedKey}</span>`;
-                            i += matchedKey.length - 1;
-                        } else {
-                            html += `<span class="text-white text-cursor rounded px-0.5">${char === ' ' ? '<span class="opacity-60 font-mono">␣</span>' : char}</span>`;
-                        }
+                    // Show the expected pattern or character
+                    if (expected.type === 'pattern' && expected.length > 1) {
+                        html += `<span class="text-white text-cursor rounded px-0.5 lao-char-highlight">${expected.value}</span>`;
+                        i += expected.length - 1;
                     } else {
                         html += `<span class="text-white text-cursor rounded px-0.5">${char === ' ' ? '<span class="opacity-60 font-mono">␣</span>' : char}</span>`;
                     }
@@ -719,7 +689,7 @@
             }
             dom.typingDisplay.innerHTML = html;
             
-            // Update progress bar
+            // Update progress
             if (state.textToType.length > 0) {
                 const progress = (state.currentIndex / state.textToType.length) * 100;
                 dom.progressFill.style.width = Math.min(progress, 100) + '%';
@@ -737,22 +707,11 @@
                 return;
             }
             
-            let charToHighlight = state.textToType[state.currentIndex];
-            let isPattern = false;
+            const expected = getExpectedAtPosition(state.currentIndex);
+            if (!expected) return;
             
-            if (state.currentIndex + 1 < state.textToType.length) {
-                const remaining = state.textToType.substring(state.currentIndex);
-                for (let key of Object.keys(laoPatterns)) {
-                    if (remaining.startsWith(key)) {
-                        charToHighlight = key;
-                        isPattern = true;
-                        break;
-                    }
-                }
-            }
-            
-            let firstChar = isPattern ? charToHighlight[0] : charToHighlight;
-            let keyInfo = charMap[firstChar];
+            const firstChar = expected.chars[0];
+            const keyInfo = getKeyInfo(firstChar);
             
             if (keyInfo) {
                 const targetKey = document.getElementById(keyInfo.code);
@@ -769,8 +728,8 @@
                 const fingerLao = fingerNamesLao[keyInfo.finger] || "ນິ້ວ";
                 let displayText = `ໃຊ້ <b>${fingerLao}</b>`;
                 if (keyInfo.shift) displayText += ' + ກົດ Shift ພ້ອມກັນ';
-                if (isPattern) {
-                    displayText += ` (ພິມ: ${charToHighlight})`;
+                if (expected.type === 'pattern' && expected.length > 1) {
+                    displayText += ` (ພິມທັງໝົດ: ${expected.value})`;
                 }
                 dom.fingerText.innerHTML = displayText;
                 dom.fingerColor.className = `w-3 h-3 rounded-full shadow-[0_0_8px_currentColor] ${fingerColors[keyInfo.finger]}`;
@@ -814,7 +773,6 @@
             state.comboMultiplier = 1;
             state.startTime = null;
             state.isPlaying = true;
-            state.pendingChars = [];
             
             dom.overlay.classList.add('hidden');
             dom.uiWpm.innerText = '0';
@@ -872,35 +830,36 @@
             dom.resXp.innerText = finalXP;
             
             dom.overlay.classList.remove('hidden');
-            // Add animation classes
             dom.overlay.querySelector('h2').className = 'text-4xl font-extrabold text-emerald-400 mb-2 animate__animated animate__bounceIn';
-            dom.overlay.querySelectorAll('.flex.gap-6.mb-6.text-center')[0].className = 'flex gap-6 mb-6 text-center animate__animated animate__fadeInUp';
-            dom.overlay.querySelector('.flex.gap-4').className = 'flex gap-4 animate__animated animate__fadeInUp animate__delay-1s';
+            const statDivs = dom.overlay.querySelectorAll('.flex.gap-6.mb-6.text-center');
+            if (statDivs.length > 0) statDivs[0].className = 'flex gap-6 mb-6 text-center animate__animated animate__fadeInUp';
+            const btnDiv = dom.overlay.querySelector('.flex.gap-4');
+            if (btnDiv) btnDiv.className = 'flex gap-4 animate__animated animate__fadeInUp animate__delay-1s';
         }
 
-        function checkPatternMatch(inputChar, shiftPressed) {
+        // Main typing logic - check if input matches expected
+        function checkInputMatch(inputChar, shiftPressed) {
             if (state.currentIndex >= state.textToType.length) return null;
             
-            const remaining = state.textToType.substring(state.currentIndex);
+            const expected = getExpectedAtPosition(state.currentIndex);
+            if (!expected) return null;
             
-            for (let key of Object.keys(laoPatterns)) {
-                if (remaining.startsWith(key)) {
-                    const pattern = laoPatterns[key];
-                    const firstChar = pattern.chars[0];
-                    const firstCharInfo = charMap[firstChar];
-                    if (firstCharInfo) {
-                        const inputInfo = charMap[inputChar];
-                        if (inputInfo && inputInfo.code === firstCharInfo.code && inputInfo.shift === firstCharInfo.shift) {
-                            return {
-                                pattern: key,
-                                chars: pattern.chars,
-                                matched: true,
-                                keyInfo: firstCharInfo
-                            };
-                        }
-                    }
+            // Check if input matches first character of expected
+            const firstChar = expected.chars[0];
+            const keyInfo = getKeyInfo(firstChar);
+            
+            if (keyInfo) {
+                const inputInfo = getKeyInfo(inputChar);
+                if (inputInfo && inputInfo.code === keyInfo.code && inputInfo.shift === keyInfo.shift) {
+                    return {
+                        matched: true,
+                        keyInfo: inputInfo,
+                        expected: expected,
+                        advanceBy: 1 // Default advance by 1
+                    };
                 }
             }
+            
             return null;
         }
 
@@ -923,7 +882,6 @@
             state.userLevel = 1;
             updateUIStats();
             closeResetModal();
-            // Show feedback
             const display = dom.typingDisplay;
             display.innerHTML = '<span class="text-emerald-400">✅ ລຶບຄະແນນສຳເລັດ! ເລີ່ມຕົ້ນໃໝ່ໄດ້ແລ້ວ</span>';
             setTimeout(() => {
@@ -941,7 +899,6 @@
             startGame();
         });
 
-        // Reset button with modal
         dom.btnReset.addEventListener('click', openResetModal);
         dom.modalCancel.addEventListener('click', closeResetModal);
         dom.modalConfirm.addEventListener('click', confirmReset);
@@ -966,17 +923,13 @@
             let inputKey = e.key;
             let shiftPressed = e.shiftKey;
             
-            const patternResult = checkPatternMatch(inputKey, shiftPressed);
+            // Check if input matches expected
+            const result = checkInputMatch(inputKey, shiftPressed);
             
-            if (patternResult) {
-                triggerKeyPress(patternResult.keyInfo.code, false);
-                const patternLength = patternResult.chars.length;
-                if (patternLength > 1) {
-                    state.currentIndex += patternLength;
-                } else {
-                    state.currentIndex += 1;
-                }
-                
+            if (result && result.matched) {
+                // Advance by 1 character
+                triggerKeyPress(result.keyInfo.code, false);
+                state.currentIndex += result.advanceBy;
                 state.comboCount++;
                 updateComboUI();
                 updateDisplay();
@@ -987,48 +940,22 @@
                     setTimeout(endGame, 300);
                 }
             } else {
-                const expectedChar = state.textToType[state.currentIndex];
-                const expectedInfo = charMap[expectedChar];
-                const inputInfo = charMap[inputKey];
-                
-                let isMatch = false;
-                let matchInfo = null;
-                
-                if (expectedInfo && inputInfo) {
-                    if (expectedInfo.code === inputInfo.code && expectedInfo.shift === inputInfo.shift) {
-                        isMatch = true;
-                        matchInfo = inputInfo;
-                    }
+                // Wrong key
+                let wrongCode = 'Space';
+                const inputInfo = getKeyInfo(inputKey);
+                if (inputInfo) {
+                    wrongCode = inputInfo.code;
                 }
+                triggerKeyPress(wrongCode, true);
                 
-                if (isMatch && matchInfo) {
-                    triggerKeyPress(matchInfo.code, false);
-                    state.currentIndex += 1;
-                    state.comboCount++;
-                    updateComboUI();
-                    updateDisplay();
-                    
-                    dom.uiWpm.innerText = calculateStats().wpm;
-
-                    if (state.currentIndex >= state.textToType.length) {
-                        setTimeout(endGame, 300);
-                    }
-                } else {
-                    let wrongCode = 'Space';
-                    if (inputInfo) {
-                        wrongCode = inputInfo.code;
-                    }
-                    triggerKeyPress(wrongCode, true);
-                    
-                    state.errors++;
-                    state.comboCount = 0;
-                    updateComboUI();
-                    playErrorBeep();
-                    
-                    const displayArea = document.getElementById('typing-display');
-                    displayArea.classList.add('text-red-500');
-                    setTimeout(() => displayArea.classList.remove('text-red-500'), 200);
-                }
+                state.errors++;
+                state.comboCount = 0;
+                updateComboUI();
+                playErrorBeep();
+                
+                const displayArea = document.getElementById('typing-display');
+                displayArea.classList.add('text-red-500');
+                setTimeout(() => displayArea.classList.remove('text-red-500'), 200);
             }
         });
 
