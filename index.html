@@ -130,7 +130,6 @@
             padding: 0 2px;
         }
 
-        /* Modal Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -146,9 +145,7 @@
             z-index: 9999;
             animation: fadeIn 0.3s ease-out;
         }
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
@@ -465,72 +462,85 @@
         });
         charMap[' '] = { code: 'Space', shift: false, finger: 'thumb' };
 
-        // Full Lao pattern mapping with correct key sequences
-        // Each pattern defines what characters need to be typed in sequence
-        const laoPatterns = {
-            // Simple words
-            'ໄປ': { chars: ['ໄ', 'ປ'] },
-            'ມາ': { chars: ['ມ', 'າ'] },
-            'ປາ': { chars: ['ປ', 'າ'] },
-            'ດີ': { chars: ['ດ', 'ີ'] },
-            'ນາ': { chars: ['ນ', 'າ'] },
-            'ກິນ': { chars: ['ກ', 'ິ', 'ນ'] },
-            'ນອນ': { chars: ['ນ', 'ອ', 'ນ'] },
-            'ເຮັດ': { chars: ['ເ', 'ຮ', 'ັ', 'ດ'] },
-            'ລາວ': { chars: ['ລ', 'າ', 'ວ'] },
-            'ສະ': { chars: ['ສ', 'ະ'] },
-            'ບາຍ': { chars: ['ບ', 'າ', 'ຍ'] },
-            
-            // Words with tone marks
-            'ພໍ່': { chars: ['ພ', 'ໍ', '່'] },
-            'ແມ່': { chars: ['ແ', 'ມ', '່'] },
-            'ນ້ຳ': { chars: ['ນ', '້', 'ຳ'] },
-            'ໄກ່': { chars: ['ໄ', 'ກ', '່'] },
-            'ໄຂ່': { chars: ['ໄ', 'ຂ', '່'] },
-            'ຊ້າງ': { chars: ['ຊ', '້', 'າ', 'ງ'] },
-            'ມ້າ': { chars: ['ມ', '້', 'າ'] },
-            'ບ້ານ': { chars: ['ບ', '້', 'າ', 'ນ'] },
-            'ນ້ອງ': { chars: ['ນ', '້', 'ອ', 'ງ'] },
-            'ຜູ້': { chars: ['ຜ', 'ູ້'] },
-            'ເຈົ້າ': { chars: ['ເ', 'ຈ', 'ົ້', 'າ'] },
-            'ນັ້ນ': { chars: ['ນ', 'ັ', '້', 'ນ'] },
-            'ອ່ານ': { chars: ['ອ', '່', 'າ', 'ນ'] },
-            'ຫຼິ້ນ': { chars: ['ຫ', 'ຼ', 'ິ້', 'ນ'] },
-            
-            // Words with ຫຼ (2 ways to type)
-            'ຫຼ': { chars: ['ຫ', 'ຼ'] },
-            'ຫຼວງ': { chars: ['ຫ', 'ຼ', 'ວ', 'ງ'] },
-            'ຕະຫຼາດ': { chars: ['ຕ', 'ະ', 'ຫ', 'ຼ', 'າ', 'ດ'] },
-            
-            // Special consonants
-            'ໜ': { chars: ['ໜ'] },
-            'ໝ': { chars: ['ໝ'] },
-            'ໜູ': { chars: ['ໜ', 'ູ'] },
-            'ໝາ': { chars: ['ໝ', 'າ'] },
-            'ໝູ': { chars: ['ໝ', 'ູ'] },
-            
-            // Compound vowels
-            'ເຂົ້າ': { chars: ['ເ', 'ຂ', 'ົ', '້', 'າ'] },
-            'ເຫຼົ້າ': { chars: ['ເ', 'ຫ', 'ຼ', 'ົ້', 'າ'] },
-            'ເຮົາ': { chars: ['ເ', 'ຮ', 'ົ', 'າ'] },
-            'ເຂົາ': { chars: ['ເ', 'ຂ', 'ົ', 'າ'] },
-            'ເມືອງ': { chars: ['ເ', 'ມ', 'ື', 'ອ', 'ງ'] },
-            'ເຮືອນ': { chars: ['ເ', 'ຮ', 'ື', 'ອ', 'ນ'] },
-            'ຄວາຍ': { chars: ['ຄ', 'ວ', 'າ', 'ຍ'] },
-            'ງົວ': { chars: ['ງ', 'ົ', 'ວ'] },
-            'ລົມ': { chars: ['ລ', 'ົ', 'ມ'] },
-            'ໄຟ': { chars: ['ໄ', 'ຟ'] },
-            'ໂຮງ': { chars: ['ໂ', 'ຮ', 'ງ'] },
-            'ຮຽນ': { chars: ['ຮ', 'ຽ', 'ນ'] },
-            'ຂຽນ': { chars: ['ຂ', 'ຽ', 'ນ'] },
-            'ສະບາຍ': { chars: ['ສ', 'ະ', 'ບ', 'າ', 'ຍ'] }
+        // Special mappings for Lao characters that need Shift
+        const specialCharMap = {
+            '້': { code: 'Digit6', shift: true, finger: 'index' },
+            '່': { code: 'Backslash', shift: false, finger: 'pinky' },
+            'ໍ': { code: 'Equal', shift: false, finger: 'pinky' },
+            'ຼ': { code: 'KeyO', shift: true, finger: 'ring' },
+            'ໜ': { code: 'KeyU', shift: true, finger: 'index' },
+            'ໝ': { code: 'KeyW', shift: true, finger: 'ring' },
+            'ຳ': { code: 'KeyE', shift: false, finger: 'middle' },
+            'ເ': { code: 'KeyG', shift: false, finger: 'index' },
+            'ໄ': { code: 'KeyW', shift: false, finger: 'ring' },
+            'ໃ': { code: 'Period', shift: false, finger: 'ring' },
+            'ແ': { code: 'KeyC', shift: false, finger: 'middle' },
+            'ໂ': { code: 'Digit3', shift: false, finger: 'middle' }
         };
 
-        // Build reverse lookup for pattern matching
+        // Merge special mappings into charMap
+        Object.keys(specialCharMap).forEach(key => {
+            charMap[key] = specialCharMap[key];
+        });
+
+        // Lao pattern definitions - each pattern defines what characters need to be typed
+        // These are used for display and validation
+        const laoPatterns = {
+            // Words with tone marks
+            'ເຂົ້າ': ['ເ', 'ຂ', 'ົ', '້', 'າ'],
+            'ນ້ຳ': ['ນ', '້', 'ຳ'],
+            'ນັ້ນ': ['ນ', 'ັ', '້', 'ນ'],
+            'ເຫຼົ້າ': ['ເ', 'ຫ', 'ຼ', 'ົ້', 'າ'],
+            'ເຮົາ': ['ເ', 'ຮ', 'ົ', 'າ'],
+            'ເຂົາ': ['ເ', 'ຂ', 'ົ', 'າ'],
+            'ເຈົ້າ': ['ເ', 'ຈ', 'ົ້', 'າ'],
+            'ຜູ້': ['ຜ', 'ູ້'],
+            'ຄວາຍ': ['ຄ', 'ວ', 'າ', 'ຍ'],
+            'ງົວ': ['ງ', 'ົ', 'ວ'],
+            'ລົມ': ['ລ', 'ົ', 'ມ'],
+            'ໄຟ': ['ໄ', 'ຟ'],
+            'ໂຮງ': ['ໂ', 'ຮ', 'ງ'],
+            'ຮຽນ': ['ຮ', 'ຽ', 'ນ'],
+            'ຂຽນ': ['ຂ', 'ຽ', 'ນ'],
+            'ອ່ານ': ['ອ', '່', 'າ', 'ນ'],
+            'ຫຼິ້ນ': ['ຫ', 'ຼ', 'ິ້', 'ນ'],
+            'ສະບາຍ': ['ສ', 'ະ', 'ບ', 'າ', 'ຍ'],
+            'ພໍ່': ['ພ', 'ໍ', '່'],
+            'ແມ່': ['ແ', 'ມ', '່'],
+            'ໄກ່': ['ໄ', 'ກ', '່'],
+            'ໄຂ່': ['ໄ', 'ຂ', '່'],
+            'ຊ້າງ': ['ຊ', '້', 'າ', 'ງ'],
+            'ມ້າ': ['ມ', '້', 'າ'],
+            'ບ້ານ': ['ບ', '້', 'າ', 'ນ'],
+            'ນ້ອງ': ['ນ', '້', 'ອ', 'ງ'],
+            'ຕະຫຼາດ': ['ຕ', 'ະ', 'ຫ', 'ຼ', 'າ', 'ດ'],
+            // Simple words
+            'ໄປ': ['ໄ', 'ປ'],
+            'ມາ': ['ມ', 'າ'],
+            'ປາ': ['ປ', 'າ'],
+            'ດີ': ['ດ', 'ີ'],
+            'ນາ': ['ນ', 'າ'],
+            'ກິນ': ['ກ', 'ິ', 'ນ'],
+            'ນອນ': ['ນ', 'ອ', 'ນ'],
+            'ເຮັດ': ['ເ', 'ຮ', 'ັ', 'ດ'],
+            'ລາວ': ['ລ', 'າ', 'ວ'],
+            'ສະ': ['ສ', 'ະ'],
+            'ບາຍ': ['ບ', 'າ', 'ຍ'],
+            'ຫຼ': ['ຫ', 'ຼ'],
+            'ຫຼວງ': ['ຫ', 'ຼ', 'ວ', 'ງ'],
+            'ໜູ': ['ໜ', 'ູ'],
+            'ໝາ': ['ໝ', 'າ'],
+            'ໝູ': ['ໝ', 'ູ'],
+            'ເມືອງ': ['ເ', 'ມ', 'ື', 'ອ', 'ງ'],
+            'ເຮືອນ': ['ເ', 'ຮ', 'ື', 'ອ', 'ນ'],
+            'ສະບາຍ': ['ສ', 'ະ', 'ບ', 'າ', 'ຍ']
+        };
+
+        // Build lookup for patterns
         const patternLookup = {};
         Object.keys(laoPatterns).forEach(key => {
-            const pattern = laoPatterns[key];
-            const firstChar = pattern.chars[0];
+            const chars = laoPatterns[key];
+            const firstChar = chars[0];
             if (!patternLookup[firstChar]) patternLookup[firstChar] = [];
             patternLookup[firstChar].push(key);
         });
@@ -625,68 +635,69 @@
             });
         }
 
-        // Get the expected character(s) at current position
-        function getExpectedAtPosition(index) {
+        // Get key info for a character (handles both regular and special characters)
+        function getKeyInfo(char) {
+            // Check special char map first
+            if (specialCharMap[char]) {
+                return specialCharMap[char];
+            }
+            // Then check regular char map
+            return charMap[char] || null;
+        }
+
+        // Get the expected character at current position
+        function getExpectedChar(index) {
+            if (index >= state.textToType.length) return null;
+            return state.textToType[index];
+        }
+
+        // Check if there's a pattern starting at current position
+        function getPatternAtPosition(index) {
             if (index >= state.textToType.length) return null;
             
-            // Check if there's a pattern match at this position
             const remaining = state.textToType.substring(index);
             for (let key of Object.keys(laoPatterns)) {
                 if (remaining.startsWith(key)) {
                     return {
-                        type: 'pattern',
-                        value: key,
-                        chars: laoPatterns[key].chars,
-                        length: key.length
+                        word: key,
+                        chars: laoPatterns[key]
                     };
                 }
             }
-            
-            // Single character
-            return {
-                type: 'char',
-                value: state.textToType[index],
-                chars: [state.textToType[index]],
-                length: 1
-            };
-        }
-
-        function getKeyInfo(char) {
-            // Handle multi-character special cases
-            if (char === 'ໜ') return charMap['ໜ'] || charMap['ຫ'] ? { code: 'KeyU', shift: true, finger: 'index' } : null;
-            if (char === 'ໝ') return charMap['ໝ'] || charMap['ຫ'] ? { code: 'KeyW', shift: true, finger: 'ring' } : null;
-            if (char === 'ຼ') return { code: 'KeyO', shift: true, finger: 'ring' };
-            if (char === '້') return { code: 'Digit6', shift: true, finger: 'index' };
-            if (char === '່') return { code: 'Backslash', shift: false, finger: 'pinky' };
-            if (char === 'ໍ') return { code: 'Equal', shift: false, finger: 'pinky' };
-            if (char === 'ເ') return { code: 'KeyG', shift: false, finger: 'index' };
-            
-            return charMap[char] || null;
+            return null;
         }
 
         function updateDisplay() {
             let html = '';
             let i = 0;
+            
             while (i < state.textToType.length) {
-                const expected = getExpectedAtPosition(i);
-                if (!expected) break;
-                
                 const char = state.textToType[i];
-                if (i < state.currentIndex) {
+                const isComplete = i < state.currentIndex;
+                const isCurrent = i === state.currentIndex;
+                
+                // Check if this position has a pattern
+                const pattern = getPatternAtPosition(i);
+                
+                if (isComplete) {
+                    // Already typed - show in green
                     html += `<span class="text-emerald-400">${char === ' ' ? '<span class="opacity-40 font-mono">␣</span>' : char}</span>`;
-                } else if (i === state.currentIndex) {
-                    // Show the expected pattern or character
-                    if (expected.type === 'pattern' && expected.length > 1) {
-                        html += `<span class="text-white text-cursor rounded px-0.5 lao-char-highlight">${expected.value}</span>`;
-                        i += expected.length - 1;
-                    } else {
-                        html += `<span class="text-white text-cursor rounded px-0.5">${char === ' ' ? '<span class="opacity-60 font-mono">␣</span>' : char}</span>`;
-                    }
+                    i++;
+                } else if (isCurrent && pattern) {
+                    // Current position has a pattern - show the whole pattern
+                    html += `<span class="text-white text-cursor rounded px-0.5 lao-char-highlight">${pattern.word}</span>`;
+                    i += pattern.word.length;
+                } else if (isCurrent) {
+                    // Current position - show with cursor
+                    html += `<span class="text-white text-cursor rounded px-0.5">${char === ' ' ? '<span class="opacity-60 font-mono">␣</span>' : char}</span>`;
+                    i++;
                 } else {
+                    // Future characters - show in gray
                     html += `<span class="text-gray-500">${char === ' ' ? '<span class="opacity-20 font-mono">␣</span>' : char}</span>`;
+                    i++;
                 }
-                i++;
             }
+            
             dom.typingDisplay.innerHTML = html;
             
             // Update progress
@@ -707,11 +718,10 @@
                 return;
             }
             
-            const expected = getExpectedAtPosition(state.currentIndex);
-            if (!expected) return;
+            const currentChar = getExpectedChar(state.currentIndex);
+            if (!currentChar) return;
             
-            const firstChar = expected.chars[0];
-            const keyInfo = getKeyInfo(firstChar);
+            const keyInfo = getKeyInfo(currentChar);
             
             if (keyInfo) {
                 const targetKey = document.getElementById(keyInfo.code);
@@ -728,8 +738,15 @@
                 const fingerLao = fingerNamesLao[keyInfo.finger] || "ນິ້ວ";
                 let displayText = `ໃຊ້ <b>${fingerLao}</b>`;
                 if (keyInfo.shift) displayText += ' + ກົດ Shift ພ້ອມກັນ';
-                if (expected.type === 'pattern' && expected.length > 1) {
-                    displayText += ` (ພິມທັງໝົດ: ${expected.value})`;
+                
+                // Check if there's a pattern and show what to type
+                const pattern = getPatternAtPosition(state.currentIndex);
+                if (pattern) {
+                    // Show which character in the pattern is next
+                    const patternIndex = state.currentIndex - state.textToType.indexOf(pattern.word);
+                    if (patternIndex < pattern.chars.length) {
+                        displayText += ` (ພິມ: ${pattern.chars[patternIndex]})`;
+                    }
                 }
                 dom.fingerText.innerHTML = displayText;
                 dom.fingerColor.className = `w-3 h-3 rounded-full shadow-[0_0_8px_currentColor] ${fingerColors[keyInfo.finger]}`;
@@ -841,23 +858,25 @@
         function checkInputMatch(inputChar, shiftPressed) {
             if (state.currentIndex >= state.textToType.length) return null;
             
-            const expected = getExpectedAtPosition(state.currentIndex);
-            if (!expected) return null;
+            const currentChar = getExpectedChar(state.currentIndex);
+            if (!currentChar) return null;
             
-            // Check if input matches first character of expected
-            const firstChar = expected.chars[0];
-            const keyInfo = getKeyInfo(firstChar);
+            // Get key info for the expected character
+            const expectedKeyInfo = getKeyInfo(currentChar);
+            if (!expectedKeyInfo) return null;
             
-            if (keyInfo) {
-                const inputInfo = getKeyInfo(inputChar);
-                if (inputInfo && inputInfo.code === keyInfo.code && inputInfo.shift === keyInfo.shift) {
-                    return {
-                        matched: true,
-                        keyInfo: inputInfo,
-                        expected: expected,
-                        advanceBy: 1 // Default advance by 1
-                    };
-                }
+            // Get key info for the input
+            const inputKeyInfo = getKeyInfo(inputChar);
+            
+            // Check if they match
+            if (inputKeyInfo && 
+                inputKeyInfo.code === expectedKeyInfo.code && 
+                inputKeyInfo.shift === expectedKeyInfo.shift) {
+                return {
+                    matched: true,
+                    keyInfo: inputKeyInfo,
+                    advanceBy: 1
+                };
             }
             
             return null;
@@ -940,11 +959,16 @@
                     setTimeout(endGame, 300);
                 }
             } else {
-                // Wrong key
+                // Wrong key - find the code to highlight
                 let wrongCode = 'Space';
                 const inputInfo = getKeyInfo(inputKey);
                 if (inputInfo) {
                     wrongCode = inputInfo.code;
+                } else {
+                    // Try to find by lowercase
+                    const lowerKey = inputKey.toLowerCase();
+                    const lowerInfo = getKeyInfo(lowerKey);
+                    if (lowerInfo) wrongCode = lowerInfo.code;
                 }
                 triggerKeyPress(wrongCode, true);
                 
